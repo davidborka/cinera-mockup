@@ -1,0 +1,4195 @@
+<!doctype html>
+<html lang="hu" data-theme="original" data-device="desktop">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<!-- Link-only sharing: tell search engines and AI scrapers to skip this page -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+<meta name="googlebot" content="noindex, nofollow, noarchive" />
+<meta name="referrer" content="no-referrer" />
+<title>Cinera — Ködben (Music Video)</title>
+<link rel="icon" href="logo.png" type="image/png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================ */
+/* @layer order — themes override tokens, never components       */
+/* ============================================================ */
+@layer reset, tokens, layout, components, themes, motion, utilities, mobile;
+
+@layer reset {
+  *,*::before,*::after { box-sizing: border-box; }
+  html,body { margin:0; padding:0; height:100%; overflow:hidden; }
+  body {
+    font-family: "Inter Tight", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--ink);
+    background: var(--surface-0);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  button:focus-visible, [tabindex]:focus-visible, input:focus-visible, select:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px;
+  }
+  input, select { font: inherit; color: inherit; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, Consolas, monospace; font-variant-numeric: tabular-nums; }
+  .sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+}
+
+@layer tokens {
+  :root {
+    --radius-control: 8px;
+    --radius-panel: 14px;
+    --radius-pill: 999px;
+    --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px;
+    --ease: cubic-bezier(.2,.7,.2,1);
+    --topbar-h: 56px;
+    --transport-h: 64px;
+    --sidebar-w: 220px;
+    --inspector-w: 320px;
+
+    /* defaults overridden per theme */
+    --surface-0: #0e1014;
+    --surface-1: #14171d;
+    --surface-2: #1b1f27;
+    --surface-3: #232934;
+    --ink: #ecedf0;
+    --ink-mute: #9aa1b1;
+    --ink-dim: #6a7184;
+    --line: rgba(255,255,255,0.07);
+    --line-strong: rgba(255,255,255,0.14);
+    --accent: oklch(72% 0.18 35);
+    --accent-ink: #1b1106;
+    --danger: oklch(64% 0.2 25);
+    --ok: oklch(70% 0.16 155);
+    --shadow-1: 0 1px 2px rgba(0,0,0,.4);
+    --shadow-2: 0 12px 32px rgba(0,0,0,.5), 0 2px 6px rgba(0,0,0,.3);
+
+    /* section ramp - overridden per theme */
+    --sec-1: oklch(60% 0.14 30);
+    --sec-2: oklch(64% 0.16 60);
+    --sec-3: oklch(68% 0.16 90);
+    --sec-4: oklch(70% 0.15 145);
+    --sec-5: oklch(66% 0.14 200);
+    --sec-6: oklch(62% 0.15 260);
+  }
+}
+
+@layer themes {
+  /* ORIGINAL - exact match to the source screenshot */
+  [data-theme="original"] {
+    --surface-0: #0d111a;          /* page bg, very dark navy */
+    --surface-1: #131826;          /* panel bg */
+    --surface-2: #1a2030;          /* nested surface */
+    --surface-3: #232a3d;          /* hover / button bg */
+    --ink: #ecedf0;
+    --ink-mute: #a1a8bd;
+    --ink-dim: #6d7591;
+    --line: rgba(255,255,255,0.06);
+    --line-strong: rgba(255,255,255,0.13);
+    --accent: #b270f0;             /* Cinera purple — render, sliders, playhead */
+    --accent-2: #4dd6c5;           /* teal complement, used in waveform */
+    --accent-ink: #ffffff;
+    --waveform-1: #b270f0;
+    --waveform-2: #4dd6c5;
+    --danger: #ef4565;
+    --ok: #65d489;
+
+    /* exact section colors from the screenshot */
+    --sec-1: #4dd2da;   /* INTRO  cyan */
+    --sec-2: #4d8af0;   /* VERSE  blue */
+    --sec-3: #f5a44a;   /* PRE-CHORUS orange */
+    --sec-4: #b770e8;   /* CHORUS purple */
+    --sec-5: #65cf6c;   /* BRIDGE green */
+    --sec-6: #46c5b6;   /* OUTRO teal */
+
+    --shadow-1: 0 1px 2px rgba(0,0,0,.4);
+    --shadow-2: 0 18px 50px rgba(0,0,0,.6), 0 2px 6px rgba(0,0,0,.3);
+  }
+  /* MIDNIGHT - graphite + amber */
+  [data-theme="midnight"] {
+    --surface-0: oklch(15% 0.012 250);
+    --surface-1: oklch(18% 0.014 250);
+    --surface-2: oklch(22% 0.016 250);
+    --surface-3: oklch(27% 0.018 250);
+    --ink: oklch(96% 0.008 250);
+    --ink-mute: oklch(70% 0.012 250);
+    --ink-dim: oklch(55% 0.012 250);
+    --line: oklch(100% 0 0 / 0.07);
+    --line-strong: oklch(100% 0 0 / 0.14);
+    --accent: oklch(74% 0.16 55);
+    --accent-ink: oklch(15% 0.04 60);
+    --waveform-1: oklch(74% 0.16 55);
+    --waveform-2: oklch(60% 0.10 55);
+    /* monochrome ramp - hue stable, lightness varies */
+    --sec-1: oklch(58% 0.06 250);
+    --sec-2: oklch(63% 0.08 220);
+    --sec-3: oklch(68% 0.10 180);
+    --sec-4: oklch(72% 0.13 130);
+    --sec-5: oklch(74% 0.15 80);
+    --sec-6: oklch(76% 0.17 55);
+  }
+
+  /* DAYLIGHT - paper + ink + fern */
+  [data-theme="daylight"] {
+    --surface-0: oklch(98% 0.004 90);
+    --surface-1: oklch(96% 0.005 90);
+    --surface-2: oklch(93% 0.007 90);
+    --surface-3: oklch(89% 0.009 90);
+    --ink: oklch(20% 0.02 240);
+    --ink-mute: oklch(40% 0.015 240);
+    --ink-dim: oklch(58% 0.012 240);
+    --line: oklch(0% 0 0 / 0.07);
+    --line-strong: oklch(0% 0 0 / 0.14);
+    --accent: oklch(54% 0.16 155);
+    --accent-ink: oklch(98% 0.01 155);
+    --waveform-1: oklch(28% 0.05 240);
+    --waveform-2: oklch(50% 0.04 240);
+    --sec-1: oklch(62% 0.13 30);
+    --sec-2: oklch(68% 0.13 65);
+    --sec-3: oklch(70% 0.12 100);
+    --sec-4: oklch(60% 0.13 155);
+    --sec-5: oklch(58% 0.13 220);
+    --sec-6: oklch(54% 0.16 290);
+    --shadow-1: 0 1px 2px rgba(0,0,0,.06);
+    --shadow-2: 0 16px 40px rgba(0,0,0,.10), 0 2px 6px rgba(0,0,0,.06);
+  }
+
+  /* AURORA - teal-black + magenta/cyan duotone */
+  [data-theme="aurora"] {
+    --surface-0: oklch(13% 0.03 200);
+    --surface-1: oklch(17% 0.035 200);
+    --surface-2: oklch(21% 0.04 200);
+    --surface-3: oklch(26% 0.045 200);
+    --ink: oklch(94% 0.025 200);
+    --ink-mute: oklch(72% 0.04 200);
+    --ink-dim: oklch(55% 0.05 200);
+    --line: oklch(100% 0.02 200 / 0.10);
+    --line-strong: oklch(100% 0.02 200 / 0.20);
+    --accent: oklch(74% 0.20 320);
+    --accent-2: oklch(78% 0.16 200);
+    --accent-ink: oklch(15% 0.06 320);
+    --waveform-1: oklch(74% 0.20 320);
+    --waveform-2: oklch(78% 0.16 200);
+    --sec-1: oklch(70% 0.18 320);
+    --sec-2: oklch(72% 0.17 290);
+    --sec-3: oklch(74% 0.15 260);
+    --sec-4: oklch(76% 0.14 230);
+    --sec-5: oklch(78% 0.15 200);
+    --sec-6: oklch(80% 0.16 175);
+    --shadow-2: 0 18px 50px oklch(13% 0.03 200 / 0.7), 0 0 0 1px oklch(100% 0.02 200 / 0.05);
+  }
+}
+
+@layer layout {
+  .app {
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr var(--inspector-w);
+    grid-template-rows: var(--topbar-h) 1fr var(--transport-h);
+    grid-template-areas:
+      "topbar topbar topbar"
+      "sidebar main inspector"
+      "transport transport transport";
+    height: 100vh;
+    background: var(--surface-0);
+  }
+  .topbar { grid-area: topbar; }
+  .sidebar { grid-area: sidebar; overflow: auto; }
+  .main { grid-area: main; overflow: auto; min-width: 0; }
+  .inspector { grid-area: inspector; overflow: auto; }
+  .transport { grid-area: transport; }
+
+  .mobtab { display: none; }
+
+  @media (max-width: 1100px) {
+    .app { grid-template-columns: 64px 1fr var(--inspector-w); }
+    .sidebar .nav-label, .sidebar .group-label, .sidebar .user-meta { display: none; }
+    .sidebar .nav-item { justify-content: center; }
+  }
+  @media (max-width: 820px) {
+    .app {
+      grid-template-columns: 1fr;
+      grid-template-rows: 48px 1fr 56px 64px;
+      grid-template-areas:
+        "topbar"
+        "main"
+        "transport"
+        "mobtab";
+    }
+    .sidebar, .inspector { display: none; }
+    .mobtab { display: flex; }
+    .topbar .crumbs, .topbar .credits { display: none; }
+  }
+}
+
+@layer components {
+  /* ---- TOPBAR ---- */
+  .topbar {
+    display: flex; align-items: center; gap: var(--space-3);
+    padding: 0 var(--space-4);
+    background: var(--surface-1);
+    border-bottom: 1px solid var(--line);
+  }
+  .icon-btn {
+    width: 36px; height: 36px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: var(--radius-control);
+    color: var(--ink-mute);
+    transition: background 120ms var(--ease), color 120ms var(--ease);
+    position: relative;
+  }
+  .icon-btn:hover { background: var(--surface-2); color: var(--ink); }
+  .icon-btn[aria-pressed="true"] { background: var(--surface-3); color: var(--ink); }
+  .icon-btn .dot {
+    position: absolute; top: 6px; right: 6px;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .icon-btn .dot::after {
+    content: attr(data-count);
+    position: absolute; top: -4px; right: -4px;
+    font-size: 9px; font-weight: 700;
+    color: var(--accent-ink);
+    background: var(--accent);
+    border-radius: var(--radius-pill);
+    padding: 1px 4px;
+    line-height: 1;
+  }
+
+  .logo {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-weight: 700; letter-spacing: 0.02em;
+    text-decoration: none; color: var(--ink);
+  }
+  .logo .logo-mark {
+    width: 80px; height: 52px;
+    flex: 0 0 80px;
+    display: block;
+    object-fit: contain;
+    object-position: center;
+    /* PNG already has a transparent background; screen blend on dark themes
+       gives the rainbow glow extra punch on the navy topbar. */
+    mix-blend-mode: screen;
+  }
+  /* On the paper-white Daylight theme, screen washes colors out, so go normal.
+     The PNG's alpha keeps it clean. */
+  [data-theme="daylight"] .logo .logo-mark { mix-blend-mode: normal; }
+  .logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .logo-text b { font-weight: 700; font-size: 26px; letter-spacing: 0.06em; color: var(--ink); }
+  .logo-tag { font-size: 9px; font-weight: 500; color: var(--ink-dim); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 4px; }
+  /* Spacer that balances the topbar to center the logo+crumbs group */
+  .topbar-flex-left  { flex: 1 1 auto; min-width: 0; }
+  .topbar-flex-right { flex: 1 1 auto; min-width: 0; }
+
+  .crumbs {
+    display: flex; align-items: center; gap: var(--space-2);
+    color: var(--ink-mute); font-size: 13px;
+  }
+  .crumbs .sep { opacity: 0.5; }
+  .crumbs .here { color: var(--ink); }
+
+  .new-project {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    padding: 8px 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-control);
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .new-project:hover { background: var(--surface-3); }
+
+  .topbar-spacer { flex: 1; }
+
+  .credits {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    padding: 6px 10px;
+    background: var(--surface-2);
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--line);
+    color: var(--ink-mute);
+    font-size: 12px;
+  }
+  .credits b { color: var(--ink); font-weight: 600; }
+  .credits .add { width: 22px; height: 22px; border-radius: 50%; background: var(--surface-3); display:inline-flex; align-items:center; justify-content:center; color: var(--ink); }
+
+  .render-split {
+    display: inline-flex;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-radius: var(--radius-control);
+    overflow: hidden;
+    box-shadow: 0 0 0 1px color-mix(in oklch, var(--accent) 70%, black 0%) inset;
+  }
+  .render-split button { padding: 8px 16px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+  .render-split button:hover { background: color-mix(in oklch, var(--accent) 88%, black 12%); }
+  .render-split .caret { padding: 8px 10px; border-left: 1px solid color-mix(in oklch, var(--accent) 70%, black 0%); }
+
+  .user-pill {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    padding: 4px 10px 4px 4px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+  }
+  .avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--sec-2), var(--sec-5));
+    display: inline-flex; align-items: center; justify-content: center;
+    color: white; font-weight: 700; font-size: 11px;
+  }
+
+  /* ---- SIDEBAR ---- */
+  .sidebar {
+    background: var(--surface-1);
+    border-right: 1px solid var(--line);
+    display: flex; flex-direction: column;
+    padding: var(--space-3) var(--space-2) var(--space-3);
+  }
+  .group-label {
+    font-size: 10px; font-weight: 600;
+    color: var(--ink-dim);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: var(--space-3) var(--space-3) var(--space-2);
+  }
+  .nav-item {
+    display: flex; align-items: center; gap: var(--space-3);
+    padding: 9px var(--space-3);
+    border-radius: var(--radius-control);
+    color: var(--ink-mute);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 120ms, color 120ms;
+  }
+  .nav-item:hover { background: var(--surface-2); color: var(--ink); }
+  .nav-item[aria-current="page"] {
+    background: color-mix(in oklch, var(--accent) 14%, transparent);
+    color: var(--ink);
+  }
+  .nav-item[aria-current="page"] svg { color: var(--accent); }
+  .nav-badge {
+    margin-left: auto;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-radius: var(--radius-pill);
+    padding: 1px 8px;
+    font-size: 11px; font-weight: 700;
+  }
+
+  .sidebar-footer { margin-top: auto; padding: var(--space-3); }
+  .user-card {
+    display: flex; align-items: center; gap: var(--space-3);
+    padding: var(--space-2);
+    background: var(--surface-2);
+    border-radius: var(--radius-panel);
+  }
+  .user-card .avatar { width: 36px; height: 36px; font-size: 13px; }
+  .user-name { font-weight: 600; color: var(--ink); }
+  .plan-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 10px; padding: 1px 6px;
+    background: color-mix(in oklch, var(--accent) 18%, transparent);
+    color: var(--accent);
+    border-radius: var(--radius-pill);
+  }
+  .plan-meta { font-size: 11px; color: var(--ink-dim); }
+
+  /* ---- MAIN ---- */
+  .main { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-4); }
+  .panel {
+    background: var(--surface-1);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-panel);
+    padding: var(--space-4);
+  }
+  .panel-flush { padding: 0; overflow: hidden; }
+  .panel-head {
+    display: flex; align-items: center; gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--line);
+  }
+  .panel-head h2 { margin: 0; font-size: 13px; font-weight: 600; color: var(--ink); }
+  .panel-head .panel-actions { margin-left: auto; display: inline-flex; gap: var(--space-2); align-items: center; }
+
+  /* PROJECT HEADER */
+  .project-head {
+    display: grid;
+    grid-template-columns: 80px minmax(180px, 1fr) auto auto auto auto;
+    gap: var(--space-4);
+    align-items: center;
+  }
+  .cover {
+    width: 80px; height: 80px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--sec-3), var(--sec-1));
+    box-shadow: var(--shadow-1) inset, 0 0 0 1px var(--line) inset;
+    position: relative; overflow: hidden;
+  }
+  .cover::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(80% 60% at 30% 20%, oklch(100% 0 0 / 0.18), transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80'><filter id='n'><feTurbulence baseFrequency='1.2' numOctaves='2'/></filter><rect width='80' height='80' filter='url(%23n)' opacity='0.18'/></svg>");
+    mix-blend-mode: overlay;
+  }
+  .project-meta h1 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+  .project-meta .tags { color: var(--ink-mute); font-size: 12px; margin-top: 4px; }
+
+  .play-circle {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--surface-2);
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line-strong);
+    transition: transform 120ms, background 120ms;
+  }
+  .play-circle:hover { background: var(--surface-3); transform: scale(1.05); }
+  .play-circle[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+
+  .timecode {
+    font-family: "JetBrains Mono", monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .timecode .sub { color: var(--ink-dim); }
+  .timecode .tot { color: var(--ink-mute); }
+
+  .vol {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    color: var(--ink-mute);
+  }
+  .range {
+    appearance: none; -webkit-appearance: none;
+    height: 4px;
+    width: 100px;
+    background: var(--surface-3);
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  .range::-webkit-slider-thumb {
+    appearance: none; -webkit-appearance: none;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--surface-1);
+    box-shadow: var(--shadow-1);
+  }
+  .range::-moz-range-thumb {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--surface-1);
+  }
+
+  .pill-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-control);
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .pill-btn:hover { background: var(--surface-3); }
+  .pill-btn[aria-pressed="true"] { background: color-mix(in oklch, var(--accent) 18%, transparent); color: var(--accent); border-color: color-mix(in oklch, var(--accent) 40%, transparent); }
+
+  .select-pill {
+    appearance: none;
+    padding: 6px 28px 6px 12px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-control);
+    color: var(--ink);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path d='M3 5l3 3 3-3' fill='none' stroke='%23999' stroke-width='1.5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+  }
+
+  .select-pill[disabled] { opacity: 0.6; }
+
+  /* TIMELINE TABS */
+  .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--line); padding: 0 var(--space-4); }
+  .tab {
+    padding: var(--space-3) var(--space-4);
+    color: var(--ink-mute);
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .tab[aria-selected="true"] { color: var(--ink); border-color: var(--accent); }
+  .tab:hover { color: var(--ink); }
+  .tab-actions { margin-left: auto; display: inline-flex; align-items: center; padding-right: var(--space-3); gap: 2px; }
+
+  /* TIMELINE BODY */
+  .timeline {
+    position: relative;
+    padding: var(--space-4) var(--space-4) var(--space-2);
+  }
+  .ruler {
+    height: 18px;
+    position: relative;
+    margin: 0 0 var(--space-2);
+    color: var(--ink-dim);
+    font-size: 10px;
+    font-family: "JetBrains Mono", monospace;
+  }
+  .ruler-tick { position: absolute; top: 0; bottom: 0; border-left: 1px solid var(--line); padding-left: 4px; }
+
+  .section-strip {
+    display: grid;
+    gap: 4px;
+    height: 56px;
+    margin-bottom: var(--space-3);
+    grid-template-columns: var(--section-grid);
+  }
+  .section {
+    border-radius: 8px;
+    padding: 8px 10px;
+    background: color-mix(in oklch, var(--sec) 22%, var(--surface-2));
+    border-left: 3px solid var(--sec);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: background 150ms;
+  }
+  .section:hover { background: color-mix(in oklch, var(--sec) 32%, var(--surface-2)); }
+  .section[aria-selected="true"] {
+    background: color-mix(in oklch, var(--sec) 45%, var(--surface-2));
+    box-shadow: 0 0 0 1px var(--sec) inset;
+  }
+  .section .label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+    color: var(--sec);
+    filter: brightness(1.4) saturate(0.9);
+  }
+  [data-theme="daylight"] .section .label { filter: none; color: color-mix(in oklch, var(--sec) 60%, black); }
+  .section .time { font-size: 10px; color: var(--ink-mute); margin-top: 2px; font-family: "JetBrains Mono", monospace; }
+
+  .waveform-wrap {
+    position: relative;
+    height: 110px;
+    background: var(--surface-2);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .waveform-wrap svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .playhead {
+    position: absolute; top: -4px; bottom: -4px;
+    width: 2px;
+    background: var(--accent);
+    left: 0;
+    transform: translateX(calc(var(--t, 0) * 1%));
+    pointer-events: auto;
+    cursor: ew-resize;
+    z-index: 5;
+    box-shadow: 0 0 0 1px var(--surface-0) inset;
+    touch-action: none;
+  }
+  /* Wider invisible hit-area around the 2px line, so it's actually grabbable */
+  .playhead::after {
+    content: "";
+    position: absolute;
+    inset: 0 -10px;
+  }
+  /* The diamond / arrow head at the top — the visible drag handle */
+  .playhead::before {
+    content: "";
+    position: absolute; top: -8px; left: -7px;
+    width: 16px; height: 14px;
+    background: var(--accent);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    box-shadow: 0 1px 4px rgba(0,0,0,.4);
+    pointer-events: none;
+  }
+  .playhead.dragging { cursor: grabbing; }
+  .playhead.dragging::before {
+    transform: scale(1.2);
+    transform-origin: 50% 100%;
+    transition: transform 80ms;
+  }
+  .playhead-time {
+    position: absolute;
+    top: -28px; left: 0;
+    transform: translateX(calc(var(--t, 0) * 1%)) translateX(-50%);
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; font-weight: 700;
+    padding: 3px 8px; border-radius: 5px;
+    z-index: 6;
+    cursor: ew-resize;
+    pointer-events: auto;
+    white-space: nowrap;
+    box-shadow: 0 2px 6px rgba(0,0,0,.4);
+    touch-action: none;
+    user-select: none;
+  }
+  .playhead-time:hover { filter: brightness(1.08); }
+  .playhead-time::after {
+    /* tiny pointer triangle from the time pill toward the playhead line */
+    content: "";
+    position: absolute;
+    bottom: -4px; left: 50%; transform: translateX(-50%);
+    width: 8px; height: 4px;
+    background: var(--accent);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+  }
+
+  .scene-thumbs {
+    display: grid; gap: 4px; margin-top: var(--space-3);
+    grid-template-columns: var(--section-grid);
+  }
+  .scene-thumb {
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--surface-2);
+    border: 2px solid var(--sec);
+    aspect-ratio: 16/10;
+    position: relative;
+    cursor: pointer;
+    transition: transform 120ms, box-shadow 120ms;
+  }
+  .scene-thumb:hover { transform: translateY(-2px); box-shadow: var(--shadow-2); }
+  .scene-thumb[aria-selected="true"] { box-shadow: 0 0 0 3px var(--accent), var(--shadow-2); }
+  .scene-thumb .img {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(120% 80% at 50% 0%, color-mix(in oklch, var(--sec) 40%, transparent), transparent 60%),
+      linear-gradient(180deg, color-mix(in oklch, var(--sec) 30%, var(--surface-3)), var(--surface-3));
+  }
+  .scene-thumb .img::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><filter id='n'><feTurbulence baseFrequency='1.4' numOctaves='2'/></filter><rect width='40' height='40' filter='url(%23n)' opacity='0.14'/></svg>");
+    mix-blend-mode: overlay;
+  }
+  .scene-thumb .tc {
+    position: absolute; left: 6px; bottom: 6px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; color: white;
+    background: rgba(0,0,0,.4); padding: 1px 4px; border-radius: 3px;
+  }
+
+  /* CHARACTER LANES */
+  .char-lanes { margin-top: var(--space-3); display: flex; flex-direction: column; gap: 6px; }
+  .char-lane {
+    position: relative;
+    height: 36px;
+    background: var(--surface-2);
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--line);
+  }
+  .char-pill {
+    position: absolute;
+    top: 0; bottom: 0;
+    border-radius: var(--radius-pill);
+    background: color-mix(in oklch, var(--c) 28%, var(--surface-3));
+    border: 1px solid color-mix(in oklch, var(--c) 60%, transparent);
+    display: flex; align-items: center; gap: var(--space-2);
+    padding: 0 12px 0 4px;
+    color: var(--ink);
+    font-size: 12px;
+    cursor: grab;
+    user-select: none;
+  }
+  .char-pill:active { cursor: grabbing; }
+  .char-pill .avatar {
+    width: 28px; height: 28px; flex: 0 0 28px;
+    background: linear-gradient(135deg, var(--c), color-mix(in oklch, var(--c) 50%, white));
+  }
+  .char-pill .meta { line-height: 1.1; }
+  .char-pill .meta b { display: block; font-weight: 600; }
+  .char-pill .meta span { font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--ink-mute); }
+  .char-handle {
+    position: absolute; top: 4px; bottom: 4px;
+    width: 8px;
+    background: var(--c);
+    border-radius: 4px;
+    cursor: ew-resize;
+  }
+  .char-handle.left { left: -4px; }
+  .char-handle.right { right: -4px; }
+
+  /* SCENE ORDER */
+  .scene-order { display: flex; gap: var(--space-3); padding: var(--space-3) var(--space-4); overflow-x: auto; align-items: center; }
+  .scene-order .nav-arrow {
+    flex: 0 0 32px;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ink-mute);
+  }
+  .scene-card {
+    flex: 0 0 130px;
+    background: var(--surface-2);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: grab;
+    transition: transform 120ms;
+  }
+  .scene-card:active { cursor: grabbing; }
+  .scene-card[aria-selected="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in oklch, var(--accent) 30%, transparent); }
+  .scene-card.dragging { opacity: 0.4; }
+  .scene-card.drag-over { transform: translateX(8px); }
+  .scene-card .img {
+    height: 80px;
+    background: linear-gradient(180deg, color-mix(in oklch, var(--sec) 35%, var(--surface-3)), var(--surface-3));
+    position: relative;
+  }
+  .scene-card .img::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80'><filter id='n'><feTurbulence baseFrequency='1.2' numOctaves='2'/></filter><rect width='80' height='80' filter='url(%23n)' opacity='0.12'/></svg>");
+  }
+  .scene-card .body { padding: 8px 10px; }
+  .scene-card .num { font-size: 11px; color: var(--ink-dim); font-family: "JetBrains Mono", monospace; }
+  .scene-card .ttl { font-weight: 600; font-size: 12px; }
+  .scene-card .tc { font-size: 10px; color: var(--ink-mute); font-family: "JetBrains Mono", monospace; }
+  .scene-card .row { display: flex; align-items: center; justify-content: space-between; }
+  .scene-card .del { color: var(--ink-dim); padding: 2px; border-radius: 4px; }
+  .scene-card .del:hover { color: var(--danger); background: color-mix(in oklch, var(--danger) 20%, transparent); }
+
+  .toggle {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    color: var(--ink-mute);
+    cursor: pointer;
+    user-select: none;
+  }
+  .toggle input { display: none; }
+  .toggle-track {
+    width: 32px; height: 18px;
+    background: var(--surface-3);
+    border-radius: var(--radius-pill);
+    position: relative;
+    transition: background 120ms;
+  }
+  .toggle-track::after {
+    content: "";
+    position: absolute; top: 2px; left: 2px;
+    width: 14px; height: 14px;
+    background: var(--ink-mute);
+    border-radius: 50%;
+    transition: transform 160ms var(--ease), background 120ms;
+  }
+  .toggle input:checked ~ .toggle-track { background: color-mix(in oklch, var(--accent) 60%, var(--surface-3)); }
+  .toggle input:checked ~ .toggle-track::after { transform: translateX(14px); background: var(--accent); }
+
+  /* MINIMAP */
+  .minimap {
+    height: 80px;
+    background: var(--surface-2);
+    border-radius: 10px;
+    margin: var(--space-3) var(--space-4);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .minimap svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.6; }
+  .minimap-sections {
+    position: absolute; top: 0; left: 0; right: 0; height: 14px;
+    display: grid; gap: 2px;
+    grid-template-columns: var(--section-grid);
+    padding: 2px;
+  }
+  .minimap-sections div {
+    background: var(--sec);
+    border-radius: 3px;
+    opacity: 0.7;
+  }
+  .minimap-viewport {
+    position: absolute; top: 0; bottom: 0;
+    background: color-mix(in oklch, var(--accent) 14%, transparent);
+    border-left: 2px solid var(--accent);
+    border-right: 2px solid var(--accent);
+    width: 30%;
+    cursor: grab;
+  }
+
+  /* INSPECTOR */
+  .inspector {
+    background: var(--surface-1);
+    border-left: 1px solid var(--line);
+    display: flex; flex-direction: column;
+  }
+  .inspector-tabs {
+    display: flex; padding: var(--space-2);
+    border-bottom: 1px solid var(--line);
+    gap: 4px;
+  }
+  .inspector-tab {
+    flex: 1;
+    padding: 6px 8px;
+    border-radius: var(--radius-control);
+    color: var(--ink-mute);
+    font-size: 12px; font-weight: 500;
+    text-align: center;
+  }
+  .inspector-tab[aria-selected="true"] { background: var(--surface-2); color: var(--ink); }
+
+  .inspector-body { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-5); overflow-y: auto; flex: 1; }
+  .field-label {
+    font-size: 10px; font-weight: 600;
+    color: var(--ink-dim);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: var(--space-2);
+  }
+  .scene-title { display: flex; align-items: center; gap: var(--space-2); }
+  .scene-title .dot-color { width: 10px; height: 10px; border-radius: 50%; background: var(--sec); }
+  .scene-title b { font-size: 16px; font-weight: 700; }
+  .scene-title-time { font-family: "JetBrains Mono", monospace; color: var(--ink-mute); margin-top: 2px; font-size: 11px; }
+
+  .keyframe {
+    aspect-ratio: 16/10; border-radius: 8px;
+    background: linear-gradient(135deg, var(--sec-3), var(--sec-1));
+    position: relative; overflow: hidden;
+  }
+  .keyframe::after {
+    content: ""; position: absolute; inset: 0;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80'><filter id='n'><feTurbulence baseFrequency='1.4' numOctaves='2'/></filter><rect width='80' height='80' filter='url(%23n)' opacity='0.16'/></svg>");
+    mix-blend-mode: overlay;
+  }
+  .keyframe-actions { display: flex; justify-content: center; margin-top: var(--space-2); }
+
+  .character-row { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2); background: var(--surface-2); border-radius: 10px; }
+  .character-row .meta b { display: block; font-weight: 600; }
+  .character-row .meta span { font-size: 11px; color: var(--ink-mute); }
+
+  .style-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: var(--space-2); }
+  .style-thumb {
+    aspect-ratio: 1;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background: linear-gradient(135deg, var(--sec-3), var(--sec-5));
+    cursor: pointer;
+  }
+  .style-thumb[aria-selected="true"] { border-color: var(--accent); }
+
+  .curve-svg { width: 100%; height: 60px; }
+  .curve-svg path { fill: none; stroke: var(--accent); stroke-width: 2; }
+  .curve-svg circle { fill: var(--accent); }
+
+  .num-input {
+    display: flex; align-items: center;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-control);
+    overflow: hidden;
+  }
+  .num-input input {
+    flex: 1; min-width: 0;
+    padding: 8px 12px;
+    background: transparent;
+    border: 0;
+    font-family: "JetBrains Mono", monospace;
+  }
+  .num-input button { padding: 0 10px; color: var(--ink-mute); }
+  .num-input button:hover { color: var(--ink); background: var(--surface-3); }
+
+  .ghost-btn {
+    width: 100%; padding: 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-control);
+    color: var(--ink); font-weight: 500;
+  }
+  .ghost-btn:hover { background: var(--surface-3); }
+
+  /* GENERIC VIEWS (library / queue / sounds / music / etc.) */
+  .view { display: flex; flex-direction: column; gap: var(--space-4); }
+  .view[hidden] { display: none !important; }
+  .view-head {
+    display: flex; align-items: center; gap: var(--space-3);
+    padding: 4px 0;
+  }
+  .view-head h1 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+  .view-head .sub { color: var(--ink-mute); font-size: 12px; }
+  .view-search {
+    flex: 0 0 280px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-control);
+    padding: 8px 12px 8px 32px;
+    color: var(--ink);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'><circle cx='11' cy='11' r='7'/><path d='M21 21l-4.3-4.3'/></svg>");
+    background-repeat: no-repeat;
+    background-position: 10px center;
+  }
+  .view-search:focus { outline: none; border-color: var(--accent); }
+  .filter-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip {
+    padding: 6px 12px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    color: var(--ink-mute);
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .chip:hover { color: var(--ink); }
+  .chip[aria-pressed="true"] {
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+  .grid-5 { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+
+  .card {
+    background: var(--surface-1);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-panel);
+    overflow: hidden;
+    transition: transform 120ms, border-color 120ms;
+    cursor: pointer;
+  }
+  .card:hover { transform: translateY(-2px); border-color: var(--line-strong); }
+  .card .thumb {
+    aspect-ratio: 16/10;
+    background: linear-gradient(135deg, var(--c1, var(--sec-3)), var(--c2, var(--sec-1)));
+    position: relative;
+    overflow: hidden;
+  }
+  .card .thumb::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><filter id='n'><feTurbulence baseFrequency='1.2' numOctaves='2'/></filter><rect width='40' height='40' filter='url(%23n)' opacity='0.16'/></svg>");
+    mix-blend-mode: overlay;
+  }
+  .card .thumb .tag {
+    position: absolute; top: 8px; left: 8px;
+    background: rgba(0,0,0,.4);
+    color: white;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .card .thumb .pin {
+    position: absolute; top: 8px; right: 8px;
+    width: 26px; height: 26px;
+    background: rgba(0,0,0,.4);
+    color: white;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .card .body { padding: 12px; }
+  .card .body h3 { margin: 0 0 4px; font-size: 14px; font-weight: 600; }
+  .card .body .meta { font-size: 11px; color: var(--ink-mute); display: flex; align-items: center; gap: 6px; }
+
+  /* QUEUE */
+  .queue-list { display: flex; flex-direction: column; gap: 0; }
+  .queue-item {
+    display: grid;
+    grid-template-columns: 60px 1fr auto auto;
+    gap: 12px; align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .queue-item:last-child { border-bottom: 0; }
+  .queue-item .qthumb {
+    width: 60px; height: 36px; border-radius: 6px;
+    background: linear-gradient(135deg, var(--sec-2), var(--sec-4));
+  }
+  .queue-item .qbody b { display: block; font-size: 13px; font-weight: 600; }
+  .queue-item .qbody span { font-size: 11px; color: var(--ink-mute); }
+  .progress {
+    width: 220px; height: 6px;
+    background: var(--surface-3);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress > span {
+    display: block; height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2, var(--accent)));
+    border-radius: 3px;
+  }
+  .badge {
+    font-size: 10px; font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .badge.ok { background: color-mix(in srgb, var(--ok) 20%, transparent); color: var(--ok); }
+  .badge.run { background: color-mix(in srgb, var(--accent) 20%, transparent); color: var(--accent); }
+  .badge.q { background: var(--surface-3); color: var(--ink-mute); }
+
+  /* SOUND CARDS / MUSIC TRACKS */
+  .track-list { display: flex; flex-direction: column; gap: 1px; background: var(--line); border-radius: var(--radius-panel); overflow: hidden; }
+  .track {
+    display: grid;
+    grid-template-columns: 36px 1fr 120px 80px 60px 60px 36px;
+    gap: 12px; align-items: center;
+    padding: 10px 16px;
+    background: var(--surface-1);
+    cursor: pointer;
+  }
+  .track:hover { background: var(--surface-2); }
+  .track .play-mini {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--surface-2);
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ink-mute);
+  }
+  .track:hover .play-mini { color: var(--accent); }
+  .track .title b { display: block; font-size: 13px; }
+  .track .title span { font-size: 11px; color: var(--ink-mute); }
+  .track .mini-wave {
+    height: 28px;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 30%, transparent), color-mix(in srgb, var(--accent-2, var(--accent)) 30%, transparent));
+    border-radius: 4px;
+    position: relative;
+  }
+  .track .mini-wave::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(90deg, transparent 0 2px, rgba(255,255,255,.18) 2px 3px);
+    border-radius: 4px;
+  }
+  .track .mono { color: var(--ink-mute); font-size: 11px; }
+
+  /* CHARACTER CARDS */
+  .char-card {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 18px 14px;
+    background: var(--surface-1);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-panel);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 120ms;
+  }
+  .char-card:hover { transform: translateY(-2px); }
+  .char-card .face {
+    width: 84px; height: 84px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--c1, var(--sec-3)), var(--c2, var(--sec-1)));
+    margin-bottom: 12px;
+    border: 2px solid var(--line-strong);
+  }
+  .char-card h3 { margin: 0; font-size: 14px; font-weight: 600; }
+  .char-card span { font-size: 11px; color: var(--ink-mute); display: block; margin-top: 4px; }
+  .char-card .scenes-tag {
+    margin-top: 8px;
+    font-size: 10px;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    padding: 3px 8px;
+    border-radius: var(--radius-pill);
+  }
+
+  /* CREDITS */
+  .balance-card {
+    background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 60%, var(--surface-3)));
+    color: var(--accent-ink);
+    padding: 24px;
+    border-radius: var(--radius-panel);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    align-items: end;
+  }
+  .balance-card .label { font-size: 12px; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.08em; }
+  .balance-card .num { font-size: 40px; font-weight: 700; line-height: 1; font-family: "Inter Tight"; }
+  .balance-card .num small { font-size: 14px; opacity: 0.85; font-weight: 500; }
+  .pkg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .pkg {
+    background: var(--surface-1);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-panel);
+    padding: 16px;
+    cursor: pointer;
+    transition: border-color 120ms, transform 120ms;
+  }
+  .pkg:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .pkg b { display: block; font-size: 22px; font-weight: 700; }
+  .pkg b small { font-weight: 500; font-size: 13px; color: var(--ink-mute); }
+  .pkg .price { display: block; margin-top: 8px; font-size: 14px; color: var(--accent); font-weight: 600; }
+  .pkg.featured { border-color: var(--accent); }
+  .pkg.featured::before {
+    content: "Legnépszerűbb";
+    display: inline-block;
+    background: var(--accent); color: var(--accent-ink);
+    font-size: 10px; font-weight: 700;
+    padding: 2px 8px; border-radius: var(--radius-pill);
+    margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .history-list { background: var(--surface-1); border: 1px solid var(--line); border-radius: var(--radius-panel); }
+  .history-row {
+    display: grid;
+    grid-template-columns: 1fr 100px 100px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+  }
+  .history-row:last-child { border-bottom: 0; }
+  .history-row b { color: var(--ink); display: block; }
+  .history-row span { color: var(--ink-mute); font-size: 11px; }
+  .history-row .amt { color: var(--danger); font-family: "JetBrains Mono", monospace; text-align: right; }
+  .history-row .amt.pos { color: var(--ok); }
+  .history-row .when { color: var(--ink-mute); font-size: 11px; text-align: right; }
+
+  /* SETTINGS FORM */
+  .settings-grid { display: grid; grid-template-columns: 200px 1fr; gap: 24px; }
+  .settings-tabs { display: flex; flex-direction: column; gap: 2px; }
+  .settings-tab {
+    padding: 10px 14px;
+    border-radius: var(--radius-control);
+    color: var(--ink-mute);
+    text-align: left;
+    font-weight: 500;
+  }
+  .settings-tab[aria-current="page"] { background: var(--surface-2); color: var(--ink); }
+  .settings-tab:hover { color: var(--ink); }
+  .settings-section {
+    background: var(--surface-1);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-panel);
+    padding: 24px;
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .form-row { display: grid; grid-template-columns: 200px 1fr; gap: 16px; align-items: center; }
+  .form-row label { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .form-row .hint { font-size: 11px; color: var(--ink-dim); margin-top: 2px; display: block; }
+  .text-input {
+    padding: 8px 12px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-control);
+    color: var(--ink);
+    width: 100%;
+  }
+  .text-input:focus { outline: none; border-color: var(--accent); }
+
+  /* PRESETS — saved scene settings + Talking Head export */
+  .preset-section { display: flex; flex-direction: column; gap: 8px; }
+  .preset-list { display: flex; flex-direction: column; gap: 6px; }
+  .preset-card {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    gap: 10px; align-items: center;
+    padding: 8px 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-control);
+    cursor: pointer;
+    transition: border-color 120ms;
+  }
+  .preset-card:hover { border-color: var(--line-strong); }
+  .preset-card .pswatch {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--p1, var(--sec-3)), var(--p2, var(--sec-1)));
+  }
+  .preset-card .ptitle b { display: block; font-size: 12px; font-weight: 600; color: var(--ink); }
+  .preset-card .ptitle span { font-size: 10px; color: var(--ink-mute); }
+  .preset-card .papply {
+    padding: 5px 9px;
+    background: var(--surface-3);
+    border-radius: var(--radius-control);
+    font-size: 11px; font-weight: 500;
+    color: var(--ink);
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .preset-card .papply:hover { background: color-mix(in srgb, var(--accent) 18%, var(--surface-3)); color: var(--accent); }
+  .preset-empty {
+    padding: 16px;
+    text-align: center;
+    color: var(--ink-dim);
+    font-size: 11px;
+    background: var(--surface-2);
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius-control);
+  }
+
+  /* preset apply menu (small popover on each preset card) */
+  .apply-menu {
+    position: absolute;
+    background: var(--surface-1);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-control);
+    box-shadow: var(--shadow-2);
+    padding: 4px;
+    z-index: 80;
+    min-width: 220px;
+    display: none;
+  }
+  .apply-menu[aria-hidden="false"] { display: block; }
+  .apply-menu button {
+    display: flex; align-items: center; gap: 8px;
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    text-align: left;
+    color: var(--ink);
+    font-size: 12px;
+  }
+  .apply-menu button:hover { background: var(--surface-2); }
+  .apply-menu button .ph-th {
+    width: 22px; height: 22px;
+    border-radius: 4px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: color-mix(in srgb, var(--accent) 22%, transparent);
+    color: var(--accent);
+  }
+  .apply-menu hr { border: 0; border-top: 1px solid var(--line); margin: 4px 0; }
+
+  /* save-preset modal extras */
+  .save-form { display: flex; flex-direction: column; gap: 14px; }
+  .save-form .checks { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .save-form .checks label {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 10px;
+    background: var(--surface-2);
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .save-form .actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px; }
+  .save-form .actions .ghost-btn { width: auto; padding: 8px 16px; }
+  .save-form .actions .primary {
+    padding: 8px 18px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-radius: var(--radius-control);
+    font-weight: 600;
+  }
+
+  /* TALKING HEAD VIEW — vertical 9:16 phone-camera layout */
+  .talking-head-stage {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .th-frame {
+    aspect-ratio: 9/16;
+    border-radius: 24px;
+    background: linear-gradient(180deg, var(--th1, var(--sec-2)), var(--th2, var(--sec-4)));
+    border: 1px solid var(--line-strong);
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow-2);
+  }
+  .th-frame::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2'/></filter><rect width='80' height='80' filter='url(%23n)' opacity='0.18'/></svg>");
+    mix-blend-mode: overlay;
+  }
+  .th-frame .th-face {
+    position: absolute;
+    left: 50%; top: 38%;
+    transform: translate(-50%, -50%);
+    width: 56%; aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--th-skin, #e9b89a) 100%, white 0%), color-mix(in srgb, var(--th-skin, #e9b89a) 60%, black 0%));
+    box-shadow: inset 0 -10px 30px rgba(0,0,0,.18), 0 8px 24px rgba(0,0,0,.25);
+  }
+  .th-frame .th-shoulders {
+    position: absolute;
+    left: 50%; bottom: 0;
+    transform: translateX(-50%);
+    width: 110%; height: 28%;
+    border-radius: 50% 50% 0 0;
+    background: color-mix(in srgb, var(--th-cloth, #2c2842) 100%, transparent 0%);
+  }
+  .th-frame .caption {
+    position: absolute; left: 12px; right: 12px; bottom: 18px;
+    color: white; font-weight: 700; font-size: 18px; letter-spacing: -0.01em;
+    text-shadow: 0 2px 8px rgba(0,0,0,.6);
+    text-align: center;
+    line-height: 1.2;
+  }
+  .th-side { display: flex; flex-direction: column; gap: 16px; }
+  .th-form { background: var(--surface-1); border: 1px solid var(--line); border-radius: var(--radius-panel); padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+  .th-form h3 { margin: 0; font-size: 14px; font-weight: 600; }
+  .lyric-editor { background: var(--surface-1); border: 1px solid var(--line); border-radius: var(--radius-panel); }
+  .lyric-row {
+    display: grid;
+    grid-template-columns: 70px 12px 1fr auto;
+    gap: 12px; align-items: center;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .lyric-row:last-child { border-bottom: 0; }
+  .lyric-row .lt { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--ink-mute); }
+  .lyric-row .ld { width: 8px; height: 8px; border-radius: 50%; background: var(--sec, var(--accent)); }
+  .lyric-row input { background: transparent; border: 0; color: var(--ink); font-size: 14px; padding: 4px 0; width: 100%; }
+  .lyric-row input:focus { outline: none; }
+  .lyric-row .sec-label { font-size: 9px; font-weight: 700; color: var(--ink-dim); letter-spacing: 0.08em; }
+
+  /* TRANSPORT */
+  .transport {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: var(--space-3);
+    padding: 0 var(--space-4);
+    background: var(--surface-1);
+    border-top: 1px solid var(--line);
+  }
+  .transport-center { display: flex; align-items: center; gap: var(--space-2); }
+  .transport .play-circle { width: 44px; height: 44px; }
+  .transport-side { display: flex; align-items: center; gap: var(--space-3); color: var(--ink-mute); }
+
+  /* MOBILE TAB BAR */
+  .mobtab {
+    grid-area: mobtab;
+    background: var(--surface-1);
+    border-top: 1px solid var(--line);
+    align-items: stretch;
+    padding: 0 var(--space-2) calc(var(--space-2) + env(safe-area-inset-bottom));
+  }
+  .mobtab button {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2px;
+    color: var(--ink-mute);
+    font-size: 10px;
+  }
+  .mobtab button[aria-selected="true"] { color: var(--accent); }
+
+  /* TWEAKS FLOATING PANEL (matches the original screenshot, bottom-right) */
+  .tweaks-float {
+    position: fixed;
+    right: 20px;
+    bottom: calc(var(--transport-h) + 16px);
+    width: 320px;
+    background: var(--surface-1);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-2);
+    z-index: 35;
+    padding: 16px 18px 18px;
+    display: none;
+  }
+  .tweaks-float[data-open="true"] { display: block; animation: tweaks-in 200ms var(--ease); }
+  @keyframes tweaks-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .tweaks-float .head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 14px;
+  }
+  .tweaks-float h3 { margin: 0; font-size: 14px; font-weight: 600; color: var(--ink); }
+  .tweaks-float .tw-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+    margin-bottom: 16px;
+  }
+  .tweaks-float .tw-btn {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    padding: 8px 4px;
+    border-radius: 10px;
+    color: var(--ink-mute);
+    transition: background 120ms, color 120ms;
+  }
+  .tweaks-float .tw-btn:hover { background: var(--surface-2); color: var(--ink); }
+  .tweaks-float .tw-btn .ring {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  }
+  .tweaks-float .tw-btn[aria-pressed="true"] .ring {
+    background: var(--accent); color: var(--accent-ink);
+  }
+  .tweaks-float .tw-btn small { font-size: 11px; }
+  .tweaks-float .apply {
+    width: 100%; padding: 11px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-radius: var(--radius-control);
+    font-weight: 600;
+  }
+  .tweaks-float .apply:hover { filter: brightness(1.08); }
+  .tweaks-fab {
+    position: fixed; bottom: calc(var(--transport-h) + 16px); right: 20px;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--accent); color: var(--accent-ink);
+    box-shadow: var(--shadow-2);
+    display: none; align-items: center; justify-content: center;
+    z-index: 32;
+  }
+  .tweaks-float[data-open="true"] ~ .tweaks-fab { display: none; }
+  /* Original theme shows the floating Tweaks by default; other themes hide it (Tweaks lives in inspector tab) */
+  [data-theme="original"] .tweaks-float[data-default-open="true"]:not([data-user-closed]) { display: block; }
+  [data-theme="original"] .inspector-tab[data-itab="tweaks"] { display: none; }
+  [data-theme="midnight"] .tweaks-float,
+  [data-theme="daylight"] .tweaks-float,
+  [data-theme="aurora"] .tweaks-float { display: none !important; }
+
+  /* THEME / DEVICE SWITCHER (floating bottom-right above transport, beside inspector) */
+  .demo-controls {
+    position: fixed; right: calc(var(--inspector-w) + 14px); bottom: calc(var(--transport-h) + 14px);
+    z-index: 60;
+    display: flex; flex-direction: row-reverse; align-items: center; gap: 8px;
+    pointer-events: none;
+  }
+  .demo-controls > * { pointer-events: auto; }
+  @media (max-width: 820px) { .demo-controls { right: 14px; bottom: calc(var(--transport-h) + 14px); } }
+  [data-device="mobile"] .demo-controls {
+    right: auto; left: 14px; bottom: 14px;
+    flex-direction: column; align-items: flex-start;
+  }
+  .theme-switcher {
+    display: inline-flex; gap: 4px;
+    display: inline-flex; gap: 4px;
+    background: color-mix(in oklch, var(--surface-2) 80%, transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-pill);
+    padding: 4px;
+    box-shadow: var(--shadow-2);
+    pointer-events: auto;
+  }
+  .theme-switcher button {
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    color: var(--ink-mute);
+    font-size: 12px; font-weight: 500;
+  }
+  .theme-switcher button[aria-pressed="true"] {
+    background: var(--accent); color: var(--accent-ink);
+  }
+  .device-switcher {
+    display: inline-flex; gap: 0; align-self: flex-start;
+    background: color-mix(in oklch, var(--surface-2) 80%, transparent);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-pill);
+    padding: 4px;
+    box-shadow: var(--shadow-2);
+  }
+  .device-switcher button {
+    padding: 6px 10px;
+    border-radius: var(--radius-pill);
+    color: var(--ink-mute);
+  }
+  .device-switcher button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+
+  /* MODAL */
+  .modal-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 100;
+  }
+  .modal-backdrop[aria-hidden="false"] { display: flex; }
+  .modal {
+    background: var(--surface-1);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-2);
+    padding: var(--space-5);
+    max-width: 540px; width: calc(100% - 32px);
+    max-height: 80vh; overflow: auto;
+  }
+  .modal h2 { margin: 0 0 var(--space-4); font-size: 18px; }
+  .modal kbd {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    padding: 2px 8px;
+    background: var(--surface-3);
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    color: var(--ink);
+  }
+  .kbd-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); }
+  .kbd-row:last-child { border-bottom: 0; }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: calc(var(--transport-h) + 20px); left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--surface-3);
+    color: var(--ink);
+    padding: 10px 18px;
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-2);
+    z-index: 80;
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 200ms, transform 200ms;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* POPOVER */
+  .popover {
+    position: absolute;
+    background: var(--surface-1);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-2);
+    min-width: 260px;
+    padding: var(--space-3);
+    z-index: 70;
+    display: none;
+  }
+  .popover[aria-hidden="false"] { display: block; }
+  .popover h3 { margin: 0 0 var(--space-2); font-size: 13px; }
+  .notif-item { padding: var(--space-2); border-radius: 8px; font-size: 12px; color: var(--ink-mute); }
+  .notif-item:hover { background: var(--surface-2); color: var(--ink); }
+  .notif-item b { color: var(--ink); display: block; margin-bottom: 2px; }
+
+  .render-menu li {
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--ink);
+    font-size: 13px;
+    display: flex; align-items: center; gap: var(--space-2);
+  }
+  .render-menu li:hover { background: var(--surface-2); }
+  .render-menu li small { color: var(--ink-dim); margin-left: auto; }
+}
+
+@layer motion {
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  .pulse-dot::after {
+    content: "";
+    position: absolute; inset: -4px;
+    border-radius: inherit;
+    box-shadow: 0 0 0 0 var(--accent);
+    animation: pulse 1.6s ease-out infinite;
+  }
+  @keyframes pulse {
+    to { box-shadow: 0 0 0 8px transparent; }
+  }
+}
+
+@layer mobile {
+  /* Phone preview frame — overrides everything before */
+  [data-device="mobile"] body {
+    background: oklch(8% 0.01 250);
+    display: flex; align-items: flex-start; justify-content: center;
+    padding: 24px 0; min-height: 100vh;
+    overflow: auto;
+  }
+  [data-device="mobile"] .app {
+    width: 390px; height: 844px;
+    border-radius: 44px;
+    border: 8px solid oklch(22% 0.005 250);
+    box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 0 0 1px oklch(35% 0.005 250) inset;
+    overflow: hidden;
+    grid-template-columns: 1fr;
+    grid-template-rows: 44px 1fr 56px 60px;
+    grid-template-areas: "topbar" "main" "transport" "mobtab";
+    position: relative;
+  }
+  [data-device="mobile"] .sidebar,
+  [data-device="mobile"] .inspector { display: none; }
+  [data-device="mobile"] .mobtab { display: flex; }
+  [data-device="mobile"] .device-frame-notch {
+    display: block !important;
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 110px; height: 24px;
+    background: oklch(8% 0.005 250);
+    border-radius: 0 0 16px 16px;
+    z-index: 100; pointer-events: none;
+  }
+  [data-device="desktop"] .device-frame-notch { display: none !important; }
+  [data-device="mobile"] .topbar { padding: 0 12px; gap: 8px; }
+  [data-device="mobile"] .topbar .crumbs,
+  [data-device="mobile"] .topbar .credits,
+  [data-device="mobile"] .topbar .new-project,
+  [data-device="mobile"] .topbar #user-pop,
+  [data-device="mobile"] .topbar #help-btn,
+  [data-device="mobile"] #sidebar-toggle,
+  [data-device="mobile"] .topbar .icon-btn[aria-label="Beállítások"],
+  [data-device="mobile"] .render-split .caret { display: none; }
+  [data-device="mobile"] .topbar .logo { font-size: 14px; gap: 4px; margin-left: 4px; }
+  [data-device="mobile"] .topbar .logo-tag { display: none; }
+  [data-device="mobile"] .topbar .logo-mark { width: 22px; height: 22px; }
+  [data-device="mobile"] .topbar #notif-btn { width: 30px; height: 30px; }
+  [data-device="mobile"] .render-split button { padding: 6px 10px; font-size: 11px; }
+  [data-device="mobile"] .main { padding: 12px; gap: 12px; }
+  [data-device="mobile"] .panel { padding: 12px; border-radius: 12px; }
+  [data-device="mobile"] .panel-flush { padding: 0; }
+  [data-device="mobile"] .panel-head { padding: 10px 12px; }
+  [data-device="mobile"] .project-head {
+    grid-template-columns: 48px 1fr auto;
+    grid-template-areas:
+      "cover meta play"
+      "tc tc tc"
+      "snap snap snap";
+    gap: 10px;
+    align-items: center;
+  }
+  [data-device="mobile"] .project-head .cover { width: 48px; height: 48px; grid-area: cover; border-radius: 8px; }
+  [data-device="mobile"] .project-head .project-meta { grid-area: meta; }
+  [data-device="mobile"] .project-head .project-meta h1 { font-size: 17px; }
+  [data-device="mobile"] .project-head .project-meta .tags { font-size: 11px; }
+  [data-device="mobile"] .project-head .play-circle { grid-area: play; width: 40px; height: 40px; }
+  [data-device="mobile"] .project-head .timecode { grid-area: tc; font-size: 13px; text-align: center; }
+  [data-device="mobile"] .project-head .vol,
+  [data-device="mobile"] .project-head #tempo-btn { display: none; }
+  [data-device="mobile"] .project-head > .row:last-child { grid-area: snap; justify-self: stretch; }
+  [data-device="mobile"] .project-head > .row:last-child .select-pill { flex: 1; }
+
+  [data-device="mobile"] .timeline { padding: 12px 8px; }
+  [data-device="mobile"] .ruler { font-size: 9px; }
+  [data-device="mobile"] .section-strip { height: 40px; }
+  [data-device="mobile"] .section { padding: 5px 6px; }
+  [data-device="mobile"] .section .label { font-size: 9px; letter-spacing: 0.04em; }
+  [data-device="mobile"] .section .time { font-size: 9px; }
+  [data-device="mobile"] .waveform-wrap { height: 80px; }
+  [data-device="mobile"] .scene-thumbs .scene-thumb .tc { font-size: 8px; }
+  [data-device="mobile"] .char-pill .meta b { font-size: 11px; }
+  [data-device="mobile"] .char-pill .meta span { font-size: 9px; }
+  [data-device="mobile"] .scene-order { padding: 8px; gap: 8px; }
+  [data-device="mobile"] .scene-order .nav-arrow { width: 28px; height: 28px; flex: 0 0 28px; }
+  [data-device="mobile"] .scene-card { flex: 0 0 100px; }
+  [data-device="mobile"] .scene-card .img { height: 60px; }
+
+  [data-device="mobile"] .transport { padding: 0 8px; gap: 6px; }
+  [data-device="mobile"] .transport-side { gap: 2px; }
+  [data-device="mobile"] .transport-side .icon-btn { width: 30px; height: 30px; }
+  [data-device="mobile"] .transport-side .icon-btn[aria-label="Eleje"],
+  [data-device="mobile"] .transport-side .icon-btn[aria-label="Vége"],
+  [data-device="mobile"] .transport-side .icon-btn[aria-label="Történet"] { display: none; }
+  [data-device="mobile"] .transport .vol { display: none; }
+  [data-device="mobile"] .transport .play-circle { width: 40px; height: 40px; }
+
+  [data-device="mobile"] .mobtab button { padding: 4px 2px; font-size: 9px; gap: 1px; min-width: 0; }
+  [data-device="mobile"] .mobtab svg { width: 18px; height: 18px; }
+}
+
+@layer utilities {
+  .row { display: flex; align-items: center; gap: var(--space-2); }
+  .col { display: flex; flex-direction: column; gap: var(--space-2); }
+  .gap-3 { gap: var(--space-3); }
+  .gap-4 { gap: var(--space-4); }
+  .mt-2 { margin-top: var(--space-2); }
+  .mt-3 { margin-top: var(--space-3); }
+  .mt-4 { margin-top: var(--space-4); }
+  .grow { flex: 1; }
+  .hidden { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="device-frame-notch" aria-hidden="true"></div>
+
+<!-- Theme + Device floating switchers (demo-only) -->
+<div class="demo-controls">
+<div class="device-switcher" role="group" aria-label="Eszköz nézet">
+  <button data-device-set="desktop" aria-pressed="true" title="Asztali nézet">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg>
+  </button>
+  <button data-device-set="mobile" aria-pressed="false" title="Mobil nézet">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+  </button>
+</div>
+
+<div class="theme-switcher" role="group" aria-label="Téma választó">
+  <button data-theme-set="original" aria-pressed="true">Original</button>
+  <button data-theme-set="midnight" aria-pressed="false">Midnight</button>
+  <button data-theme-set="daylight" aria-pressed="false">Daylight</button>
+  <button data-theme-set="aurora" aria-pressed="false">Aurora</button>
+</div>
+</div><!-- /.demo-controls -->
+
+<div class="app">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <button class="icon-btn" id="sidebar-toggle" aria-label="Oldalsáv" title="Oldalsáv (Cmd+\)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <button class="new-project" title="Új projekt (Cmd+N)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v12H3zM8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/><path d="M12 11v5M9.5 13.5h5"/></svg>
+      Új Projekt
+    </button>
+    <span class="topbar-flex-left" aria-hidden="true"></span>
+    <a href="#" class="logo" aria-label="Cinera kezdőlap">
+      <img src="logo.png" alt="" class="logo-mark" decoding="async" />
+      <span class="logo-text">
+        <b>CINERA</b>
+        <span class="logo-tag">AI-vezérelt videógenerálás</span>
+      </span>
+    </a>
+    <div class="crumbs">
+      <span>Projektek</span>
+      <span class="sep">›</span>
+      <span class="here">Ködben (Music Video)</span>
+    </div>
+    <span class="topbar-spacer"></span>
+    <div class="credits" title="Kreditek (kattints a tetejűzéshez)">
+      Kreditek: <b>1 240</b>
+      <button class="add" aria-label="Kreditek hozzáadása">+</button>
+    </div>
+    <button class="icon-btn" id="user-pop" aria-label="Profil" title="Bence Z. — Pro Plan">
+      <span class="avatar" style="width:24px;height:24px;font-size:10px;background:linear-gradient(135deg, var(--sec-2), var(--sec-5));">BZ</span>
+    </button>
+    <button class="icon-btn" id="notif-btn" aria-haspopup="true" aria-expanded="false" aria-controls="notif-pop" aria-label="Értesítések">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 004 0"/></svg>
+      <span class="dot" data-count="3" aria-hidden="true"></span>
+    </button>
+    <button class="icon-btn" aria-label="Súgó" title="Súgó (?)" id="help-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 015 0c0 2.5-2.5 2-2.5 4M12 17h.01"/></svg>
+    </button>
+    <button class="icon-btn" aria-label="Beállítások" title="Beállítások">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.4 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.4 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1-1.5 1.7 1.7 0 00-1.9.4l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.4-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.4-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.4h0a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.4l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.4 1.9v0a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>
+    </button>
+    <div class="render-split">
+      <button id="render-btn" title="Render indítása (Cmd+R)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg>
+        Render
+      </button>
+      <button class="caret" id="render-menu-btn" aria-haspopup="true" aria-label="Render opciók">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" aria-label="Munkaterület">
+    <div class="group-label">Munkatér</div>
+    <div class="nav-item" data-nav="projects" aria-current="page" tabindex="0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h6l2 2h10v11H3z"/></svg>
+      <span class="nav-label">Projektek</span>
+    </div>
+    <div class="nav-item" data-nav="library" tabindex="0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h4v16H4zM10 4h4v16h-4zM18 6l3 14-4 1L14 7z"/></svg>
+      <span class="nav-label">Könyvtár</span>
+    </div>
+    <div class="nav-item" data-nav="queue" tabindex="0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
+      <span class="nav-label">Render Sor</span>
+      <span class="nav-badge">2</span>
+    </div>
+
+    <div class="group-label">Eszközök</div>
+    <div class="nav-item" data-nav="audio" tabindex="0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4zM15.5 8.5a5 5 0 010 7M19 5a9 9 0 010 14"/></svg>
+      <span class="nav-label">Hangok</span>
+    </div>
+    <div class="nav-item" data-nav="music" tabindex="0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      <span class="nav-label">Zene</span>
+    </div>
+    <div class="nav-item" data-nav="characters" tabindex="0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+      <span class="nav-label">Karakterek</span>
+    </div>
+    <div class="nav-item" data-nav="locations" tabindex="0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span class="nav-label">Helyszínek</span>
+    </div>
+    <div class="nav-item" data-nav="effects" tabindex="0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.5 7H22l-6 4.5L18.5 21 12 17l-6.5 4L8 13.5 2 9h7.5z"/></svg>
+      <span class="nav-label">Effektek</span>
+    </div>
+    <div class="nav-item" data-nav="texts" tabindex="0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V5h16v2M9 5v14M15 5v14M5 19h14"/></svg>
+      <span class="nav-label">Szövegek</span>
+    </div>
+
+    <div class="group-label">Beállítások</div>
+    <div class="nav-item" data-nav="credits" tabindex="0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5C9 8 10 7 12 7s3 1 3 2.5-1 2.5-3 2.5-3 1-3 2.5S10 17 12 17s3-1 3-2.5"/></svg>
+      <span class="nav-label">Kreditek</span>
+    </div>
+    <div class="nav-item" data-nav="settings" tabindex="0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19 12c0-.5 0-1-.1-1.4l2-1.5-2-3.4-2.4.9c-.7-.6-1.5-1-2.4-1.3L13.7 3h-3.4l-.4 2.3c-.9.3-1.7.7-2.4 1.3l-2.4-.9-2 3.4 2 1.5c-.1.5-.1.9-.1 1.4s0 1 .1 1.4l-2 1.5 2 3.4 2.4-.9c.7.6 1.5 1 2.4 1.3l.4 2.3h3.4l.4-2.3c.9-.3 1.7-.7 2.4-1.3l2.4.9 2-3.4-2-1.5c.1-.5.1-1 .1-1.4z"/></svg>
+      <span class="nav-label">Beállítások</span>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <span class="avatar">BZ</span>
+        <div class="user-meta">
+          <div class="user-name">Bence Z.</div>
+          <span class="plan-pill">Prémium</span>
+          <span class="plan-meta">Pro Plan</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main" id="main">
+    <!-- ============== VIEW: EDITOR (Projektek) ============== -->
+    <div class="view" id="view-editor" data-view>
+    <!-- PROJECT HEAD -->
+    <section class="panel project-head">
+      <div class="cover" aria-hidden="true"></div>
+      <div class="project-meta">
+        <h1>Ködben</h1>
+        <div class="tags">4:20 · 128 BPM · E min</div>
+      </div>
+      <button class="play-circle" id="play-mid" aria-pressed="false" aria-label="Lejátszás / Szünet">
+        <svg class="ico-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg>
+        <svg class="ico-pause hidden" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      </button>
+      <div class="timecode mono" id="timecode-main">
+        <span class="cur">01:23</span><span class="sub">.456</span>
+        <span class="tot"> / 04:20.000</span>
+      </div>
+      <div class="vol">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4zM15.5 8.5a5 5 0 010 7"/></svg>
+        <input class="range" type="range" min="0" max="100" value="72" aria-label="Hangerő" id="vol-main">
+      </div>
+      <button class="pill-btn" id="tempo-btn" aria-pressed="false">Tempo</button>
+      <div class="row" style="gap:6px;">
+        <span style="color:var(--ink-mute);font-size:12px;">Snap</span>
+        <select class="select-pill" id="snap" aria-label="Snap">
+          <option>Ütésekhez</option>
+          <option>Ütemekhez</option>
+          <option>Másodpercekhez</option>
+          <option>Kockákhoz</option>
+          <option>Nincs</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- TIMELINE PANEL -->
+    <section class="panel panel-flush">
+      <div class="tabs" role="tablist" aria-label="Idővonal nézet">
+        <button class="tab" role="tab" aria-selected="true" data-tab="wave">Hullámforma</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="beats">Ütemek</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="structure">Szerkezet</button>
+        <span class="tab-actions">
+          <button class="icon-btn" id="zoom-out" aria-label="Kicsinyítés"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></button>
+          <button class="icon-btn" aria-label="Méret"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+          <button class="icon-btn" id="zoom-in" aria-label="Nagyítás"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        </span>
+      </div>
+
+      <div class="timeline" id="timeline">
+        <!-- Ruler -->
+        <div class="ruler" id="ruler" aria-hidden="true"></div>
+
+        <!-- Section pills -->
+        <div class="section-strip" id="section-strip" role="list" aria-label="Szakaszok"></div>
+
+        <!-- Waveform -->
+        <div class="waveform-wrap" id="waveform" tabindex="0" role="slider" aria-label="Hullámforma — kattints a pozíció kiválasztásához" aria-valuemin="0" aria-valuemax="260" aria-valuenow="83">
+          <svg id="wave-svg" preserveAspectRatio="none" viewBox="0 0 1000 110"></svg>
+          <div class="playhead" id="playhead"></div>
+          <div class="playhead-time mono" id="playhead-time">01:23.456</div>
+        </div>
+
+        <!-- Scene thumbs lane -->
+        <div class="scene-thumbs" id="scene-thumbs" role="list" aria-label="Jelenetek"></div>
+
+        <!-- Character lanes -->
+        <div class="char-lanes" id="char-lanes" aria-label="Karakter sávok"></div>
+      </div>
+    </section>
+
+    <!-- SCENE ORDER -->
+    <section class="panel panel-flush">
+      <div class="panel-head">
+        <h2>Jelenet sorrend (<span id="scene-count">10</span>)</h2>
+        <div class="panel-actions">
+          <label class="toggle">
+            <input type="checkbox" id="auto-fit" checked>
+            <span class="toggle-track"></span>
+            <span>Automatikus illesztés</span>
+          </label>
+          <button class="pill-btn" id="add-scene">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Jelenet hozzáadása
+          </button>
+        </div>
+      </div>
+      <div class="scene-order" id="scene-order">
+        <button class="nav-arrow" id="scene-prev" aria-label="Korábbi jelenetek">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="row" id="scene-row" style="gap: var(--space-3); flex: 1; overflow-x: auto; scroll-behavior: smooth;"></div>
+        <button class="nav-arrow" id="scene-next" aria-label="Későbbi jelenetek">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- MINIMAP -->
+    <section class="panel panel-flush">
+      <div class="panel-head">
+        <h2>Idővonal nézet</h2>
+        <div class="panel-actions">
+          <button class="icon-btn" aria-label="Megjelenítés"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          <button class="icon-btn" aria-label="Hangsáv"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/></svg></button>
+        </div>
+      </div>
+      <div class="minimap" id="minimap" aria-label="Mini-térkép">
+        <div class="minimap-sections" id="mini-sections"></div>
+        <svg id="mini-wave" preserveAspectRatio="none" viewBox="0 0 1000 80" style="top:14px; height:calc(100% - 14px);"></svg>
+        <div class="minimap-viewport" id="minimap-viewport"></div>
+      </div>
+      <div class="ruler" id="mini-ruler" style="padding: 0 var(--space-4) var(--space-3); height:14px; margin-top:0;" aria-hidden="true"></div>
+    </section>
+    </div><!-- /view-editor -->
+
+    <!-- ============== VIEW: KÖNYVTÁR ============== -->
+    <div class="view" id="view-library" data-view hidden>
+      <div class="view-head">
+        <div><h1>Könyvtár</h1><div class="sub">Minden projekted egy helyen</div></div>
+        <span style="flex:1;"></span>
+        <input class="view-search" placeholder="Keresés…" type="search">
+        <button class="render-split"><button>Új projekt</button></button>
+      </div>
+      <div class="filter-row">
+        <button class="chip" aria-pressed="true">Összes</button>
+        <button class="chip">Music Video</button>
+        <button class="chip">Reklám</button>
+        <button class="chip">Dokumentum</button>
+        <button class="chip">Vázlat</button>
+        <button class="chip">Archív</button>
+      </div>
+      <div class="grid-3" id="library-grid"></div>
+    </div>
+
+    <!-- ============== VIEW: RENDER SOR ============== -->
+    <div class="view" id="view-queue" data-view hidden>
+      <div class="view-head">
+        <div><h1>Render sor</h1><div class="sub">Aktív és befejezett renderek</div></div>
+        <span style="flex:1;"></span>
+        <div class="filter-row">
+          <button class="chip" aria-pressed="true">Aktív</button>
+          <button class="chip">Kész</button>
+          <button class="chip">Hibás</button>
+        </div>
+      </div>
+      <div class="panel panel-flush">
+        <div class="queue-list" id="queue-list"></div>
+      </div>
+    </div>
+
+    <!-- ============== VIEW: HANGOK ============== -->
+    <div class="view" id="view-sounds" data-view hidden>
+      <div class="view-head">
+        <div><h1>Hangok</h1><div class="sub">Effektek és foley</div></div>
+        <span style="flex:1;"></span>
+        <input class="view-search" placeholder="Hang keresés…">
+      </div>
+      <div class="filter-row">
+        <button class="chip" aria-pressed="true">Összes</button>
+        <button class="chip">Foley</button>
+        <button class="chip">Whoosh</button>
+        <button class="chip">Impact</button>
+        <button class="chip">Atmoszféra</button>
+        <button class="chip">UI</button>
+      </div>
+      <div class="grid-4" id="sounds-grid"></div>
+    </div>
+
+    <!-- ============== VIEW: ZENE ============== -->
+    <div class="view" id="view-music" data-view hidden>
+      <div class="view-head">
+        <div><h1>Zene</h1><div class="sub">Háttérzene és vokál</div></div>
+        <span style="flex:1;"></span>
+        <input class="view-search" placeholder="Cím / előadó / BPM…">
+      </div>
+      <div class="filter-row">
+        <button class="chip" aria-pressed="true">Mind</button>
+        <button class="chip">Cinematic</button>
+        <button class="chip">Pop</button>
+        <button class="chip">Hip-hop</button>
+        <button class="chip">Electronic</button>
+        <button class="chip">Acoustic</button>
+        <button class="chip">Sajátok</button>
+      </div>
+      <div class="track-list" id="music-list"></div>
+    </div>
+
+    <!-- ============== VIEW: KARAKTEREK ============== -->
+    <div class="view" id="view-characters" data-view hidden>
+      <div class="view-head">
+        <div><h1>Karakterek</h1><div class="sub">Generált és mentett karakterek</div></div>
+        <span style="flex:1;"></span>
+        <button class="render-split"><button>+ Új karakter</button></button>
+      </div>
+      <div class="filter-row">
+        <button class="chip" aria-pressed="true">Mind</button>
+        <button class="chip">Projektben</button>
+        <button class="chip">Sajátok</button>
+        <button class="chip">Megosztott</button>
+      </div>
+      <div class="grid-4" id="char-grid"></div>
+    </div>
+
+    <!-- ============== VIEW: HELYSZÍNEK ============== -->
+    <div class="view" id="view-locations" data-view hidden>
+      <div class="view-head">
+        <div><h1>Helyszínek</h1><div class="sub">Beállítás és környezet</div></div>
+        <span style="flex:1;"></span>
+        <input class="view-search" placeholder="Helyszín keresés…">
+      </div>
+      <div class="filter-row">
+        <button class="chip" aria-pressed="true">Összes</button>
+        <button class="chip">Város</button>
+        <button class="chip">Természet</button>
+        <button class="chip">Stúdió</button>
+        <button class="chip">Belső</button>
+        <button class="chip">Sci-fi</button>
+      </div>
+      <div class="grid-3" id="loc-grid"></div>
+    </div>
+
+    <!-- ============== VIEW: EFFEKTEK ============== -->
+    <div class="view" id="view-effects" data-view hidden>
+      <div class="view-head">
+        <div><h1>Effektek</h1><div class="sub">Színkorrekció, particle, transition</div></div>
+        <span style="flex:1;"></span>
+      </div>
+      <div class="filter-row">
+        <button class="chip" aria-pressed="true">Mind</button>
+        <button class="chip">Color</button>
+        <button class="chip">Distortion</button>
+        <button class="chip">Particle</button>
+        <button class="chip">Transition</button>
+        <button class="chip">Light Leak</button>
+      </div>
+      <div class="grid-5" id="fx-grid"></div>
+    </div>
+
+    <!-- ============== VIEW: SZÖVEGEK ============== -->
+    <div class="view" id="view-texts" data-view hidden>
+      <div class="view-head">
+        <div><h1>Szövegek</h1><div class="sub">Dalszöveg sorról sorra, szakaszokhoz horgonyozva</div></div>
+        <span style="flex:1;"></span>
+        <button class="pill-btn">+ Új sor</button>
+        <button class="render-split"><button>Mentés</button></button>
+      </div>
+      <div class="lyric-editor" id="lyrics"></div>
+    </div>
+
+    <!-- ============== VIEW: KREDITEK ============== -->
+    <div class="view" id="view-credits" data-view hidden>
+      <div class="view-head">
+        <div><h1>Kreditek</h1><div class="sub">Egyenleg, csomagok, használati napló</div></div>
+      </div>
+      <div class="balance-card">
+        <div>
+          <div class="label">Aktuális egyenleg</div>
+          <div class="num">1 240 <small>kredit</small></div>
+          <div style="margin-top:8px; font-size:12px; opacity:0.85;">Pro Plan · havi 500 ingyen kredit</div>
+        </div>
+        <button class="ghost-btn" style="background: rgba(255,255,255,0.18); color: var(--accent-ink); border: 0;">Csomag vásárlása</button>
+      </div>
+      <h2 style="margin: 8px 0 -4px; font-size: 15px;">Csomagok</h2>
+      <div class="pkg-grid">
+        <div class="pkg"><b>500 <small>kredit</small></b><span class="price">1 990 Ft</span></div>
+        <div class="pkg featured"><b>1 500 <small>kredit</small></b><span class="price">4 990 Ft</span></div>
+        <div class="pkg"><b>5 000 <small>kredit</small></b><span class="price">14 990 Ft</span></div>
+        <div class="pkg"><b>20 000 <small>kredit</small></b><span class="price">49 990 Ft</span></div>
+      </div>
+      <h2 style="margin: 8px 0 -4px; font-size: 15px;">Napló</h2>
+      <div class="history-list" id="history-list"></div>
+    </div>
+
+    <!-- ============== VIEW: TALKING HEAD ============== -->
+    <div class="view" id="view-talking" data-view hidden>
+      <div class="view-head">
+        <div><h1>Talking Head</h1><div class="sub">Beszélő-fej projekt — vertikális 9:16, egy szereplő, közeli plán</div></div>
+        <span style="flex:1;"></span>
+        <button class="pill-btn" id="th-back">← Vissza a szerkesztőre</button>
+        <button class="render-split"><button id="th-render">Render</button></button>
+      </div>
+      <div class="talking-head-stage">
+        <div class="th-frame" id="th-frame">
+          <div class="th-face" aria-hidden="true"></div>
+          <div class="th-shoulders" aria-hidden="true"></div>
+          <div class="caption" id="th-caption">A jó tartalom három pillérre épül…</div>
+        </div>
+        <div class="th-side">
+          <div class="th-form">
+            <h3>Forrás sablon</h3>
+            <div class="form-row">
+              <label>Sablon</label>
+              <select class="select-pill" id="th-preset" style="width:100%;"><option value="">— válassz sablont —</option></select>
+            </div>
+          </div>
+          <div class="th-form">
+            <h3>Beszélő</h3>
+            <div class="form-row">
+              <label>Karakter</label>
+              <select class="select-pill" id="th-char" style="width:100%;">
+                <option>Lány — főszereplő</option>
+                <option>Férfi — narrátor</option>
+                <option>Saját arc — feltöltés</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label>Bőrtónus</label>
+              <input type="color" id="th-skin" value="#e9b89a" style="width:60px; height: 32px; background: transparent; border: 1px solid var(--line); border-radius: 6px;">
+            </div>
+            <div class="form-row">
+              <label>Ruházat szín</label>
+              <input type="color" id="th-cloth" value="#2c2842" style="width:60px; height: 32px; background: transparent; border: 1px solid var(--line); border-radius: 6px;">
+            </div>
+          </div>
+          <div class="th-form">
+            <h3>Beszéd</h3>
+            <div class="form-row">
+              <label>Felirat</label>
+              <input class="text-input" id="th-cap-input" value="A jó tartalom három pillérre épül…">
+            </div>
+            <div class="form-row">
+              <label>Hossz</label>
+              <select class="select-pill"><option>00:30</option><option>00:45</option><option>00:60</option><option>02:00</option></select>
+            </div>
+            <div class="form-row">
+              <label>Hang stílusa</label>
+              <select class="select-pill"><option>Természetes · meleg</option><option>Energikus</option><option>Komoly · narrátor</option><option>Suttogás</option></select>
+            </div>
+            <div class="form-row">
+              <label>Háttér</label>
+              <select class="select-pill" id="th-bg-style">
+                <option>Stúdió fekete</option>
+                <option>Színes gradiens</option>
+                <option>Életlen utca</option>
+                <option>Otthoni iroda</option>
+              </select>
+            </div>
+          </div>
+          <div class="th-form">
+            <h3>Vizuális stílus (sablonból másolva)</h3>
+            <div id="th-applied-summary" style="display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--ink-mute);">
+              <span>Még nincs sablon kiválasztva.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============== VIEW: BEÁLLÍTÁSOK ============== -->
+    <div class="view" id="view-settings" data-view hidden>
+      <div class="view-head">
+        <div><h1>Beállítások</h1><div class="sub">Fiók, exportálás, integrációk</div></div>
+      </div>
+      <div class="settings-grid">
+        <div class="settings-tabs">
+          <button class="settings-tab" aria-current="page" data-stab="account">Fiók</button>
+          <button class="settings-tab" data-stab="audio">Hang és export</button>
+          <button class="settings-tab" data-stab="api">API kulcsok</button>
+          <button class="settings-tab" data-stab="theme">Téma</button>
+          <button class="settings-tab" data-stab="shortcuts">Billentyűparancsok</button>
+        </div>
+        <div class="settings-section" id="stab-account">
+          <h2 style="margin:0;font-size:16px;">Fiók</h2>
+          <div class="form-row">
+            <label>Megjelenítendő név</label>
+            <input class="text-input" value="Bence Zoltán">
+          </div>
+          <div class="form-row">
+            <label>E-mail</label>
+            <input class="text-input" value="bence@dereet.studio">
+          </div>
+          <div class="form-row">
+            <label>Stúdió</label>
+            <input class="text-input" value="Déreet Studio">
+          </div>
+          <div class="form-row">
+            <label>Felület nyelve</label>
+            <select class="select-pill"><option>Magyar</option><option>English</option><option>Deutsch</option></select>
+          </div>
+          <div class="form-row">
+            <label>2FA</label>
+            <label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span><span>Bekapcsolva</span></label>
+          </div>
+        </div>
+        <div class="settings-section hidden" id="stab-audio">
+          <h2 style="margin:0;font-size:16px;">Hang és export</h2>
+          <div class="form-row"><label>Default render felbontás</label><select class="select-pill"><option>1080p · 25 fps</option><option>1080p · 60 fps</option><option>4K · 25 fps</option></select></div>
+          <div class="form-row"><label>Audio bitrate</label><select class="select-pill"><option>192 kbps</option><option>256 kbps</option><option>320 kbps</option></select></div>
+          <div class="form-row"><label>Export célmappa</label><input class="text-input" value="C:\Cinera\Export"></div>
+          <div class="form-row"><label>Hardver gyorsítás</label><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span><span>NVENC engedélyezve</span></label></div>
+        </div>
+        <div class="settings-section hidden" id="stab-api">
+          <h2 style="margin:0;font-size:16px;">API kulcsok</h2>
+          <div class="form-row"><label>Cinera API kulcs</label><input class="text-input" type="password" value="ck_live_•••••••••••••••••"></div>
+          <div class="form-row"><label>Webhook URL</label><input class="text-input" value="https://hooks.dereet.studio/cinera"></div>
+          <div class="form-row"><label>Külső model</label><select class="select-pill"><option>Cinera Cloud</option><option>OpenAI Sora</option><option>Runway Gen-3</option><option>Saját szerver</option></select></div>
+        </div>
+        <div class="settings-section hidden" id="stab-theme">
+          <h2 style="margin:0;font-size:16px;">Téma</h2>
+          <div class="form-row">
+            <label>Felület téma</label>
+            <div class="filter-row" id="settings-themes">
+              <button class="chip" data-theme-set-2="original">Original</button>
+              <button class="chip" data-theme-set-2="midnight">Midnight</button>
+              <button class="chip" data-theme-set-2="daylight">Daylight</button>
+              <button class="chip" data-theme-set-2="aurora">Aurora</button>
+            </div>
+          </div>
+          <div class="form-row"><label>Kontraszt mód</label><label class="toggle"><input type="checkbox"><span class="toggle-track"></span><span>Magas kontraszt</span></label></div>
+          <div class="form-row"><label>Csökkentett mozgás</label><label class="toggle"><input type="checkbox"><span class="toggle-track"></span><span>Animációk minimalizálása</span></label></div>
+        </div>
+        <div class="settings-section hidden" id="stab-shortcuts">
+          <h2 style="margin:0;font-size:16px;">Billentyűparancsok</h2>
+          <div class="kbd-row"><span>Lejátszás / szünet</span><kbd>Space</kbd></div>
+          <div class="kbd-row"><span>5 mp vissza</span><kbd>J</kbd></div>
+          <div class="kbd-row"><span>5 mp előre</span><kbd>L</kbd></div>
+          <div class="kbd-row"><span>Új jelenet</span><kbd>Cmd / Ctrl + ⇧ + N</kbd></div>
+          <div class="kbd-row"><span>Render</span><kbd>Cmd / Ctrl + R</kbd></div>
+          <div class="kbd-row"><span>Téma váltás</span><kbd>T</kbd></div>
+          <div class="kbd-row"><span>Mobil nézet</span><kbd>M</kbd></div>
+          <div class="kbd-row"><span>Súgó</span><kbd>?</kbd></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- INSPECTOR -->
+  <aside class="inspector" aria-label="Jelenet beállítások">
+    <div class="inspector-tabs" role="tablist">
+      <button class="inspector-tab" role="tab" aria-selected="true" data-itab="scene">Jelenet</button>
+      <button class="inspector-tab" role="tab" aria-selected="false" data-itab="tweaks">Tweaks</button>
+      <button class="inspector-tab" role="tab" aria-selected="false" data-itab="render">Render</button>
+    </div>
+
+    <div class="inspector-body" id="ipanel-scene">
+      <div>
+        <div class="scene-title">
+          <span class="dot-color" id="ins-dot" style="background: var(--sec-3);"></span>
+          <b id="ins-name">Chorus</b>
+        </div>
+        <div class="scene-title-time mono" id="ins-time">04 · 1:09 – 1:39 (00:30)</div>
+      </div>
+
+      <div>
+        <div class="field-label">Kezdő képkocka</div>
+        <div class="keyframe" id="ins-keyframe" style="background: linear-gradient(135deg, var(--sec-3), var(--sec-1));"></div>
+        <div class="keyframe-actions">
+          <button class="ghost-btn" id="regen-frame">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:4px;"><path d="M21 12a9 9 0 11-3-6.7L21 8M21 3v5h-5"/></svg>
+            Új kép
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <div class="field-label">Karakterek</div>
+        <div class="character-row">
+          <span class="avatar" style="background:linear-gradient(135deg, var(--sec-1), var(--sec-3));">L</span>
+          <div class="meta">
+            <b>Lány</b>
+            <span>Főszereplő</span>
+          </div>
+          <button class="icon-btn" style="margin-left:auto;" aria-label="Karakter hozzáadása"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+      </div>
+
+      <div>
+        <div class="field-label">Stílus</div>
+        <select class="select-pill" style="width:100%;">
+          <option>Cinematic · Night City</option>
+          <option>Cinematic · Day</option>
+          <option>Anime · Soft</option>
+          <option>Documentary</option>
+          <option>Vintage Film</option>
+        </select>
+        <div class="style-grid">
+          <div class="style-thumb" aria-selected="true" style="background:linear-gradient(135deg,var(--sec-2),var(--sec-1));"></div>
+          <div class="style-thumb" style="background:linear-gradient(135deg,var(--sec-3),var(--sec-4));"></div>
+          <div class="style-thumb" style="background:linear-gradient(135deg,var(--sec-4),var(--sec-5));"></div>
+          <div class="style-thumb" style="background:linear-gradient(135deg,var(--sec-5),var(--sec-6));"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="field-label">Kamera mozgás</div>
+        <select class="select-pill" style="width:100%;">
+          <option>Követő · Lassú</option>
+          <option>Statikus</option>
+          <option>Dolly be</option>
+          <option>Dolly ki</option>
+          <option>Kézi</option>
+          <option>Crane</option>
+        </select>
+        <svg class="curve-svg mt-3" viewBox="0 0 200 60" id="cam-curve">
+          <path d="M0,40 C40,40 60,12 100,18 C140,24 160,50 200,42" />
+          <circle cx="0" cy="40" r="3" />
+          <circle cx="100" cy="18" r="3" />
+          <circle cx="200" cy="42" r="3" />
+        </svg>
+      </div>
+
+      <div>
+        <div class="field-label">Jelenet hossz</div>
+        <div class="num-input">
+          <input type="text" value="00:30.000" id="ins-len" aria-label="Hossz">
+          <button id="len-down" aria-label="Csökkentés"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></button>
+          <button id="len-up" aria-label="Növelés"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+      </div>
+
+      <div>
+        <div class="field-label">Vágási pontok</div>
+        <label class="toggle" style="background:var(--surface-2); padding:10px 12px; border-radius:var(--radius-control); width:100%; justify-content:space-between;">
+          <span style="color:var(--ink);">Auto (Ütések)</span>
+          <input type="checkbox" id="auto-cuts" checked>
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+
+      <div class="preset-section">
+        <div class="field-label" style="margin-bottom: 0;">Sablonok</div>
+        <button class="ghost-btn" id="save-preset-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px;margin-right:4px;"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><path d="M7 3v6h10"/><path d="M7 21v-7h10v7"/></svg>
+          Mentés sablonként
+        </button>
+        <div class="preset-list" id="preset-list" aria-live="polite"></div>
+      </div>
+
+      <button class="ghost-btn" id="advanced">Haladó beállítások</button>
+    </div>
+
+    <div class="inspector-body hidden" id="ipanel-tweaks">
+      <div class="row" style="justify-content:space-between;">
+        <h3 style="margin:0;font-size:14px;">Tweaks</h3>
+        <button class="icon-btn" aria-label="Bezárás"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <div class="row" style="gap:var(--space-3);justify-content:space-around;">
+        <button class="col" style="align-items:center;color:var(--accent);">
+          <span class="icon-btn" style="background:color-mix(in oklch, var(--accent) 18%, transparent); color:var(--accent); width:44px; height:44px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
+          <small>Téma</small>
+        </button>
+        <button class="col" style="align-items:center;">
+          <span class="icon-btn" style="width:44px;height:44px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18M3 12h18M3 19h18"/></svg>
+          </span>
+          <small>Tartalom</small>
+        </button>
+        <button class="col" style="align-items:center;">
+          <span class="icon-btn" style="width:44px;height:44px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-7"/></svg>
+          </span>
+          <small>Cél</small>
+        </button>
+        <button class="col" style="align-items:center;">
+          <span class="icon-btn" style="width:44px;height:44px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/></svg>
+          </span>
+          <small>Költség</small>
+        </button>
+      </div>
+      <div>
+        <div class="field-label">Hangulat</div>
+        <input class="range" type="range" min="0" max="100" value="60" style="width:100%;">
+      </div>
+      <div>
+        <div class="field-label">Vágás-tempó</div>
+        <input class="range" type="range" min="0" max="100" value="40" style="width:100%;">
+      </div>
+      <div>
+        <div class="field-label">Effekt-erősség</div>
+        <input class="range" type="range" min="0" max="100" value="30" style="width:100%;">
+      </div>
+      <button class="render-split" style="display:flex;justify-content:center;">
+        <button id="apply-tweaks" style="width:100%;">Változtatások alkalmazása</button>
+      </button>
+    </div>
+
+    <div class="inspector-body hidden" id="ipanel-render">
+      <div>
+        <div class="field-label">Sor</div>
+        <div class="character-row">
+          <div class="meta grow">
+            <b>Ködben — Final v3</b>
+            <span>Render közben · 67%</span>
+          </div>
+          <span class="mono" style="color:var(--accent);">02:14</span>
+        </div>
+      </div>
+      <div>
+        <div class="field-label">Felbontás</div>
+        <select class="select-pill" style="width:100%;">
+          <option>1080p · 25 fps</option>
+          <option>1080p · 60 fps</option>
+          <option>4K · 25 fps</option>
+          <option>4K · 60 fps</option>
+        </select>
+      </div>
+      <div>
+        <div class="field-label">Becsült költség</div>
+        <div class="character-row" style="background:color-mix(in oklch, var(--accent) 8%, transparent);">
+          <div class="meta grow">
+            <b style="color:var(--accent);">240 kredit</b>
+            <span>≈ 4 perc rendering</span>
+          </div>
+        </div>
+      </div>
+      <button class="render-split" style="justify-content:center;"><button style="width:100%;">Render indítása</button></button>
+    </div>
+  </aside>
+
+  <!-- TRANSPORT -->
+  <footer class="transport">
+    <div class="transport-side">
+      <button class="icon-btn" aria-label="Eleje"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 6,20 8,20 8,12 19,20 19,4 8,12 8,4"/></svg></button>
+      <button class="icon-btn" aria-label="Visszatekerés" id="rewind"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="11,4 11,20 0,12"/><polygon points="22,4 22,20 11,12"/></svg></button>
+    </div>
+    <div class="transport-center">
+      <button class="play-circle" id="play-bottom" aria-pressed="false" aria-label="Lejátszás / Szünet">
+        <svg class="ico-play" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg>
+        <svg class="ico-pause hidden" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      </button>
+    </div>
+    <div class="transport-side">
+      <button class="icon-btn" aria-label="Előretekerés" id="ffwd"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="2,4 13,12 2,20"/><polygon points="13,4 24,12 13,20"/></svg></button>
+      <button class="icon-btn" aria-label="Vége"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,4 16,12 5,20 16,12 16,20 18,20 18,4 16,4 16,12"/></svg></button>
+      <button class="icon-btn" aria-label="Loop" id="loop-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 014-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 01-4 4H3"/></svg></button>
+      <button class="icon-btn" aria-label="Történet"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></button>
+      <span class="vol">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4z"/></svg>
+        <input class="range" type="range" min="0" max="100" value="80" id="vol-bottom" aria-label="Hangerő">
+      </span>
+      <button class="icon-btn" aria-label="Teljes képernyő" id="fs-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6"/></svg></button>
+    </div>
+  </footer>
+
+  <!-- MOBILE TAB BAR -->
+  <nav class="mobtab" aria-label="Mobil navigáció">
+    <button data-mobtab="timeline" aria-selected="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg>
+      Idővonal
+    </button>
+    <button data-mobtab="scenes">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="7" height="7" rx="1"/><rect x="14" y="4" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Jelenetek
+    </button>
+    <button data-mobtab="inspector">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.4 1.9l.1.1a2 2 0 11-2.8 2.8M4.6 9a1.7 1.7 0 00-.4-1.9l-.1-.1a2 2 0 112.8-2.8"/></svg>
+      Beállítások
+    </button>
+    <button data-mobtab="render">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg>
+      Render
+    </button>
+  </nav>
+</div>
+
+<!-- POPOVERS / MODALS -->
+<div class="popover" id="notif-pop" role="dialog" aria-hidden="true" aria-label="Értesítések" style="top:60px; right:120px;">
+  <h3>Értesítések</h3>
+  <div class="notif-item"><b>Render kész</b>Ködben_v2.mp4 letöltésre kész.</div>
+  <div class="notif-item"><b>Új kreditek</b>240 kreditet kapott a hűségprogramból.</div>
+  <div class="notif-item"><b>Karakter elkészült</b>"Lány" karakter képei generálva.</div>
+</div>
+
+<div class="popover" id="render-pop" role="menu" aria-hidden="true" style="top:60px; right:14px;">
+  <ul class="render-menu">
+    <li data-render="quick">Gyors előnézet <small>30 kredit</small></li>
+    <li data-render="hd">HD render <small>120 kredit</small></li>
+    <li data-render="4k">4K render <small>360 kredit</small></li>
+    <li data-render="export">Csak audio export <small>10 kredit</small></li>
+  </ul>
+</div>
+
+<!-- Floating Tweaks panel (matches original screenshot) -->
+<div class="tweaks-float" id="tweaks-float" data-default-open="true" role="dialog" aria-label="Tweaks">
+  <div class="head">
+    <h3>Tweaks</h3>
+    <button class="icon-btn" id="tweaks-close" aria-label="Bezárás">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="tw-grid" role="group" aria-label="Tweak kategóriák">
+    <button class="tw-btn" aria-pressed="true" data-tw="theme">
+      <span class="ring"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+      <small>Téma</small>
+    </button>
+    <button class="tw-btn" data-tw="content">
+      <span class="ring"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18M3 12h18M3 19h18"/></svg></span>
+      <small>Tartalom</small>
+    </button>
+    <button class="tw-btn" data-tw="goal">
+      <span class="ring"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-7"/></svg></span>
+      <small>Cél</small>
+    </button>
+    <button class="tw-btn" data-tw="cost">
+      <span class="ring"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/></svg></span>
+      <small>Költség</small>
+    </button>
+  </div>
+  <button class="apply" id="tweaks-apply">Változtatások alkalmazása</button>
+</div>
+
+<button class="tweaks-fab" id="tweaks-fab" aria-label="Tweaks megnyitása">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18M3 12h18M3 19h18"/></svg>
+</button>
+
+<!-- User profile dropdown -->
+<div class="popover" id="user-pop-menu" role="menu" aria-hidden="true" style="top:60px; right:14px; min-width: 240px;">
+  <div style="display:flex; align-items:center; gap:10px; padding: 8px 10px 10px; border-bottom: 1px solid var(--line); margin-bottom: 6px;">
+    <span class="avatar" style="width:36px; height:36px; font-size:13px; background: linear-gradient(135deg, var(--sec-2), var(--sec-4));">BZ</span>
+    <div>
+      <div style="font-weight:600;">Bence Zoltán</div>
+      <div style="font-size:11px; color:var(--ink-dim);">Déreet Studio · Pro</div>
+    </div>
+  </div>
+  <ul class="render-menu">
+    <li data-user-action="profile">Profil</li>
+    <li data-user-action="studios">Stúdió váltás</li>
+    <li data-user-action="billing">Számlázás</li>
+    <li data-user-action="invite">Csapat meghívása</li>
+    <li data-user-action="logout" style="color: var(--danger);">Kijelentkezés</li>
+  </ul>
+</div>
+
+<!-- Settings popover -->
+<div class="popover" id="settings-pop" role="menu" aria-hidden="true" style="top:60px; right:60px; min-width: 220px;">
+  <h3 style="margin: 0 0 8px;">Beállítások</h3>
+  <ul class="render-menu">
+    <li data-settings="prefs">Általános</li>
+    <li data-settings="audio">Hang és export</li>
+    <li data-settings="api">API kulcsok</li>
+    <li data-settings="shortcuts">Billentyűparancsok</li>
+    <li data-settings="about">Cineráról</li>
+  </ul>
+</div>
+
+<!-- Credits add popover -->
+<div class="popover" id="credits-pop" role="dialog" aria-hidden="true" style="top:60px; right:230px; min-width: 280px;">
+  <h3 style="margin: 0 0 10px;">Kreditek vásárlása</h3>
+  <ul class="render-menu">
+    <li data-credits="500"><span>500 kredit</span><small>1 990 Ft</small></li>
+    <li data-credits="1500"><span>1 500 kredit</span><small>4 990 Ft</small></li>
+    <li data-credits="5000"><span>5 000 kredit</span><small>14 990 Ft</small></li>
+    <li data-credits="sub">Havi előfizetés <small>2 990 Ft / hó</small></li>
+  </ul>
+</div>
+
+<!-- Save preset modal -->
+<div class="modal-backdrop" id="save-preset-modal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-labelledby="sp-title">
+    <h2 id="sp-title">Sablon mentése</h2>
+    <form class="save-form" id="save-preset-form">
+      <div>
+        <div class="field-label">Sablon neve</div>
+        <input class="text-input" name="pname" placeholder="Pl. Cinematic Night Vibe" required maxlength="60">
+      </div>
+      <div>
+        <div class="field-label">Mit mentünk?</div>
+        <div class="checks">
+          <label><input type="checkbox" name="incl" value="style" checked> Stílus</label>
+          <label><input type="checkbox" name="incl" value="camera" checked> Kamera mozgás</label>
+          <label><input type="checkbox" name="incl" value="character" checked> Karakter</label>
+          <label><input type="checkbox" name="incl" value="duration"> Hossz</label>
+          <label><input type="checkbox" name="incl" value="cuts" checked> Vágási pontok</label>
+          <label><input type="checkbox" name="incl" value="tweaks" checked> Tweakek</label>
+        </div>
+      </div>
+      <div>
+        <div class="field-label">Cél projekt-típus</div>
+        <select class="select-pill" name="ptype" style="width:100%;">
+          <option value="any">Bármelyik</option>
+          <option value="music-video">Music Video</option>
+          <option value="talking-head">Talking Head</option>
+          <option value="ad">Reklám</option>
+          <option value="documentary">Dokumentum</option>
+        </select>
+      </div>
+      <div class="actions">
+        <button type="button" class="ghost-btn" id="sp-cancel">Mégse</button>
+        <button type="submit" class="primary">Mentés</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Per-card apply menu (positioned dynamically) -->
+<div class="apply-menu" id="apply-menu" role="menu" aria-hidden="true"></div>
+
+<div class="modal-backdrop" id="kbd-modal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-labelledby="kbd-title">
+    <h2 id="kbd-title">Billentyűparancsok</h2>
+    <div class="kbd-row"><span>Lejátszás / szünet</span><kbd>Space</kbd></div>
+    <div class="kbd-row"><span>Visszatekerés 5s</span><kbd>J</kbd></div>
+    <div class="kbd-row"><span>Előretekerés 5s</span><kbd>L</kbd></div>
+    <div class="kbd-row"><span>Snap váltás</span><kbd>S</kbd></div>
+    <div class="kbd-row"><span>Új jelenet</span><kbd>Cmd / Ctrl + ⇧ + N</kbd></div>
+    <div class="kbd-row"><span>Render</span><kbd>Cmd / Ctrl + R</kbd></div>
+    <div class="kbd-row"><span>Téma váltás</span><kbd>T</kbd></div>
+    <div class="kbd-row"><span>Mobil nézet</span><kbd>M</kbd></div>
+    <div class="kbd-row"><span>Súgó</span><kbd>?</kbd></div>
+    <div class="kbd-row"><span>Bezárás</span><kbd>Esc</kbd></div>
+    <button class="ghost-btn mt-4" id="kbd-close">Bezárás</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   STATE
+   ============================================================ */
+const TOTAL = 260; // total seconds (4:20)
+const SECTIONS = [
+  { id: 's1', label: 'INTRO',     start:   0, end:  19, color: 1 },
+  { id: 's2', label: 'VERSE 1',   start:  19, end:  49, color: 2 },
+  { id: 's3', label: 'PRE-CHORUS',start:  49, end:  69, color: 3 },
+  { id: 's4', label: 'CHORUS',    start:  69, end:  99, color: 4 },
+  { id: 's5', label: 'VERSE 2',   start:  99, end: 129, color: 2 },
+  { id: 's6', label: 'PRE-CHORUS',start: 129, end: 149, color: 3 },
+  { id: 's7', label: 'CHORUS',    start: 149, end: 179, color: 4 },
+  { id: 's8', label: 'BRIDGE',    start: 179, end: 209, color: 5 },
+  { id: 's9', label: 'CHORUS',    start: 209, end: 249, color: 4 },
+  { id: 's10',label: 'OUTRO',     start: 249, end: 260, color: 6 },
+];
+
+let scenes = SECTIONS.map((s, i) => ({
+  ...s,
+  num: i + 1,
+  title: titleFromLabel(s.label, i)
+}));
+
+const CHARACTERS = [
+  { id: 'c1', name: 'Lány',    role: '0:00 - 1:05', start:   0, end:  65, color: 1 },
+  { id: 'c2', name: 'Férfi',   role: '1:05 - 2:20', start:  65, end: 140, color: 3 },
+  { id: 'c3', name: 'Zenekar', role: '2:20 - 3:40', start: 140, end: 220, color: 4 },
+  { id: 'c4', name: 'Táncosok',role: '3:40 - 4:20', start: 220, end: 260, color: 6 }
+];
+
+let state = {
+  t: 83.456,           // current time in seconds
+  playing: false,
+  selectedSceneId: 's4',
+  zoom: 1,
+  loop: false,
+  muted: true,         // default muted to avoid surprising audio on load
+  volume: 0.72,
+  device: 'desktop',
+  theme: localStorage.getItem('cinera.theme') || 'original'
+};
+
+function titleFromLabel(label, i){
+  return ['Intro','Verse 1','Pre-Chorus','Chorus','Verse 2','Pre-Chorus','Chorus','Bridge','Chorus','Outro'][i];
+}
+
+/* ============================================================
+   AUDIO ENGINE — synthesizes a 4:20 / 128 BPM E-minor track,
+   renders it offline, samples peaks for the waveform,
+   and plays it back live so the playhead is in real sync.
+   ============================================================ */
+const AUDIO_SR = 22050;
+let songBuffer = null;
+let SONG_PEAKS_FINE = null;
+let SONG_PEAKS_MINI = null;
+let liveCtx = null, liveGain = null, liveSource = null;
+let playStartCtx = 0, playStartT = 0;
+
+const N = {
+  E2: 82.41, G2: 98.00, A2: 110.00, B2: 123.47, C2: 65.41, D2: 73.42,
+  E3: 164.81, G3: 196.00, A3: 220.00, B3: 246.94, C3: 130.81, D3: 146.83,
+  E4: 329.63, G4: 392.00, A4: 440.00, B4: 493.88, D4: 293.66, C4: 261.63,
+  Fs4: 369.99
+};
+
+async function synthSong(sectionsArr) {
+  const dur = TOTAL;
+  const ctx = new OfflineAudioContext(1, Math.ceil(AUDIO_SR * dur), AUDIO_SR);
+  const bpm = 128, beat = 60 / bpm;
+  const master = ctx.createGain();
+  master.gain.value = 0.55;
+  master.connect(ctx.destination);
+
+  const kick = (t, v=1) => {
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = 'sine';
+    o.frequency.setValueAtTime(140, t);
+    o.frequency.exponentialRampToValueAtTime(42, t + 0.10);
+    g.gain.setValueAtTime(v*0.95, t);
+    g.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
+    o.connect(g).connect(master); o.start(t); o.stop(t + 0.2);
+  };
+  const snare = (t, v=1) => {
+    const len = Math.floor(AUDIO_SR * 0.18);
+    const buf = ctx.createBuffer(1, len, AUDIO_SR);
+    const d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random()*2-1) * Math.exp(-i / (AUDIO_SR*0.04));
+    const src = ctx.createBufferSource(); src.buffer = buf;
+    const flt = ctx.createBiquadFilter(); flt.type='highpass'; flt.frequency.value=1400;
+    const g = ctx.createGain(); g.gain.value = v*0.5;
+    src.connect(flt).connect(g).connect(master); src.start(t);
+  };
+  const hat = (t, v=1) => {
+    const len = Math.floor(AUDIO_SR * 0.04);
+    const buf = ctx.createBuffer(1, len, AUDIO_SR);
+    const d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random()*2-1) * Math.exp(-i / (AUDIO_SR*0.008));
+    const src = ctx.createBufferSource(); src.buffer = buf;
+    const flt = ctx.createBiquadFilter(); flt.type='highpass'; flt.frequency.value=7500;
+    const g = ctx.createGain(); g.gain.value = v*0.16;
+    src.connect(flt).connect(g).connect(master); src.start(t);
+  };
+  const bass = (t, freq, len, v=1) => {
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = 'sawtooth'; o.frequency.value = freq;
+    const flt = ctx.createBiquadFilter(); flt.type='lowpass'; flt.frequency.value=520;
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(v*0.32, t + 0.008);
+    g.gain.exponentialRampToValueAtTime(0.001, t + len);
+    o.connect(flt).connect(g).connect(master);
+    o.start(t); o.stop(t + len + 0.05);
+  };
+  const pad = (t, freqs, len, v=1) => {
+    freqs.forEach(f => {
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'triangle'; o.frequency.value = f;
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(v*0.04, t + 0.4);
+      g.gain.linearRampToValueAtTime(0, t + len);
+      o.connect(g).connect(master);
+      o.start(t); o.stop(t + len + 0.1);
+    });
+  };
+  const lead = (t, freq, len, v=1) => {
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = 'square'; o.frequency.value = freq;
+    const flt = ctx.createBiquadFilter(); flt.type='lowpass'; flt.frequency.value=2200;
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(v*0.10, t + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.001, t + len);
+    o.connect(flt).connect(g).connect(master);
+    o.start(t); o.stop(t + len + 0.1);
+  };
+
+  const energy = { 'INTRO':0.45, 'VERSE 1':0.72, 'PRE-CHORUS':0.88, 'CHORUS':1.0, 'VERSE 2':0.74, 'BRIDGE':0.65, 'OUTRO':0.32 };
+  const bassRoot = [N.E2, N.A2, N.C2, N.G2, N.E2, N.A2, N.B2, N.E2];
+  const chordsBank = [
+    [N.E3, N.G3, N.B3], [N.A2, N.C3, N.E3], [N.C3, N.E3, N.G3], [N.G2, N.B2, N.D3],
+    [N.E3, N.G3, N.B3], [N.A2, N.C3, N.E3], [N.B2, N.D3, N.Fs4 / 2], [N.E3, N.G3, N.B3]
+  ];
+  const melodyChorus = [N.E4, N.G4, N.B4, N.A4, N.G4, N.E4, N.D4, N.E4];
+
+  sectionsArr.forEach(sec => {
+    const e = energy[sec.label] ?? 0.6;
+    let t = sec.start, bar = 0;
+    while (t + 4*beat <= sec.end + 0.001) {
+      kick(t, e);
+      kick(t + 2*beat, e*0.85);
+      if (e > 0.5) {
+        snare(t + beat, e*0.95);
+        snare(t + 3*beat, e*0.95);
+      }
+      const subBeats = e > 0.85 ? 8 : 4;
+      for (let h = 0; h < subBeats; h++) hat(t + h*(4*beat/subBeats), e*0.8);
+      const idx = bar % bassRoot.length;
+      bass(t, bassRoot[idx], 4*beat * 0.95, e);
+      pad(t, chordsBank[idx], 4*beat * 0.98, e * 0.9);
+      if (sec.label === 'CHORUS') {
+        for (let m = 0; m < 4; m++) {
+          lead(t + m*beat, melodyChorus[(bar*2 + m) % melodyChorus.length], beat * 0.85, e);
+        }
+      } else if (sec.label === 'BRIDGE') {
+        // sparser melody
+        lead(t + beat, melodyChorus[bar % melodyChorus.length], beat*0.5, e*0.7);
+      }
+      t += 4*beat; bar++;
+    }
+  });
+
+  return ctx.startRendering();
+}
+
+function peaksFromBuffer(buf, n) {
+  const data = buf.getChannelData(0);
+  const block = Math.floor(data.length / n);
+  const peaks = new Float32Array(n);
+  for (let i = 0; i < n; i++) {
+    let max = 0;
+    const s = i * block, e = s + block;
+    for (let j = s; j < e; j += 8) {
+      const v = Math.abs(data[j]);
+      if (v > max) max = v;
+    }
+    peaks[i] = max;
+  }
+  return peaks;
+}
+
+async function initAudio() {
+  try {
+    const buf = await synthSong(scenes);
+    songBuffer = buf;
+    SONG_PEAKS_FINE = peaksFromBuffer(buf, 480);
+    SONG_PEAKS_MINI = peaksFromBuffer(buf, 220);
+    renderWaveform('wave-svg', 480);
+    renderWaveform('mini-wave', 220);
+  } catch (err) {
+    console.warn('Audio engine init failed; using procedural waveform', err);
+  }
+}
+
+function ensureLiveCtx() {
+  if (!liveCtx) {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    liveCtx = new AC();
+    liveGain = liveCtx.createGain();
+    liveGain.gain.value = state.muted ? 0 : state.volume;
+    liveGain.connect(liveCtx.destination);
+  }
+  if (liveCtx.state === 'suspended') liveCtx.resume();
+}
+function startLivePlayback(t) {
+  if (!songBuffer) return;
+  ensureLiveCtx();
+  stopLivePlayback();
+  liveSource = liveCtx.createBufferSource();
+  liveSource.buffer = songBuffer;
+  liveSource.connect(liveGain);
+  liveSource.start(0, Math.max(0, Math.min(t, TOTAL - 0.05)));
+  playStartCtx = liveCtx.currentTime;
+  playStartT = t;
+}
+function stopLivePlayback() {
+  if (liveSource) {
+    try { liveSource.stop(); } catch(e){}
+    liveSource.disconnect();
+    liveSource = null;
+  }
+}
+function setMute(m) {
+  state.muted = m;
+  if (liveGain) liveGain.gain.value = m ? 0 : state.volume;
+  $$('.mute-btn').forEach(b => {
+    b.setAttribute('aria-pressed', m);
+    b.dataset.muted = m;
+  });
+}
+function setVolume(v) {
+  state.volume = v;
+  if (liveGain && !state.muted) liveGain.gain.value = v;
+}
+
+/* ============================================================
+   UTILS
+   ============================================================ */
+const $ = (s, root=document) => root.querySelector(s);
+const $$ = (s, root=document) => Array.from(root.querySelectorAll(s));
+
+function fmt(t){
+  const m = Math.floor(t / 60);
+  const s = Math.floor(t % 60);
+  const ms = Math.floor((t % 1) * 1000);
+  return `${pad(m)}:${pad(s)}.${String(ms).padStart(3,'0')}`;
+}
+function fmtShort(t){
+  const m = Math.floor(t / 60);
+  const s = Math.floor(t % 60);
+  return `${m}:${pad(s)}`;
+}
+function pad(n){ return String(n).padStart(2,'0'); }
+function toast(msg){
+  const el = $('#toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => el.classList.remove('show'), 1800);
+}
+function colorVar(n){ return `var(--sec-${n})`; }
+
+/* ============================================================
+   RENDER: TIMELINE
+   ============================================================ */
+function renderRuler(){
+  const ruler = $('#ruler');
+  ruler.innerHTML = '';
+  for(let s=0; s <= TOTAL; s += 30){
+    const tick = document.createElement('span');
+    tick.className = 'ruler-tick mono';
+    tick.style.left = `${(s/TOTAL)*100}%`;
+    tick.textContent = fmtShort(s);
+    ruler.appendChild(tick);
+  }
+  // duplicate into mini ruler
+  const m = $('#mini-ruler');
+  m.innerHTML = ruler.innerHTML;
+}
+
+function renderSections(){
+  const strip = $('#section-strip');
+  const thumbs = $('#scene-thumbs');
+  // grid template by duration
+  const grid = scenes.map(s => `${(s.end-s.start)}fr`).join(' ');
+  strip.style.setProperty('--section-grid', grid);
+  thumbs.style.setProperty('--section-grid', grid);
+  // mini sections
+  const mini = $('#mini-sections');
+  mini.style.setProperty('--section-grid', grid);
+
+  strip.innerHTML = '';
+  thumbs.innerHTML = '';
+  mini.innerHTML = '';
+
+  scenes.forEach(sc => {
+    const el = document.createElement('div');
+    el.className = 'section';
+    el.setAttribute('role','listitem');
+    el.dataset.id = sc.id;
+    el.style.setProperty('--sec', colorVar(sc.color));
+    el.setAttribute('aria-selected', sc.id === state.selectedSceneId ? 'true' : 'false');
+    el.innerHTML = `
+      <div class="label">${sc.label}</div>
+      <div class="time">${fmtShort(sc.start)} - ${fmtShort(sc.end)}</div>`;
+    el.addEventListener('click', () => selectScene(sc.id));
+    strip.appendChild(el);
+
+    const tb = document.createElement('div');
+    tb.className = 'scene-thumb';
+    tb.setAttribute('role','listitem');
+    tb.dataset.id = sc.id;
+    tb.style.setProperty('--sec', colorVar(sc.color));
+    tb.setAttribute('aria-selected', sc.id === state.selectedSceneId ? 'true' : 'false');
+    tb.innerHTML = `<div class="img"></div><span class="tc mono">${fmtShort(sc.start)}.${pad(0)}</span>`;
+    tb.addEventListener('click', () => { selectScene(sc.id); seekTo(sc.start); });
+    thumbs.appendChild(tb);
+
+    const mn = document.createElement('div');
+    mn.style.setProperty('--sec', colorVar(sc.color));
+    mn.style.background = colorVar(sc.color);
+    mini.appendChild(mn);
+  });
+}
+
+function renderSceneCount(){ $('#scene-count').textContent = scenes.length; }
+
+function renderWaveform(svgId, samples=240){
+  const svg = document.getElementById(svgId);
+  if (!svg) return;
+  const isMain = svgId === 'wave-svg';
+  const w = 1000, h = isMain ? 110 : 80, mid = h/2;
+  const peaks = isMain ? SONG_PEAKS_FINE : SONG_PEAKS_MINI;
+
+  const top = []; const bot = [];
+  if (peaks && peaks.length) {
+    let max = 0;
+    for (let i = 0; i < peaks.length; i++) if (peaks[i] > max) max = peaks[i];
+    if (max < 0.001) max = 0.001;
+    for (let i = 0; i < peaks.length; i++) {
+      const x = (i / peaks.length) * w;
+      const a = Math.max(1.5, (peaks[i] / max) * (mid - 4));
+      top.push(`${i===0?'M':'L'}${x},${mid - a}`);
+      bot.push(`L${x},${mid + a}`);
+    }
+  } else {
+    // procedural fallback while audio renders
+    for(let i=0; i<samples; i++){
+      const t = (i/samples) * TOTAL;
+      const x = (i/samples) * w;
+      const sec = scenes.find(s => t >= s.start && t < s.end) || scenes[scenes.length-1];
+      const energy = [0.4, 0.7, 0.85, 1.0, 0.7, 0.85, 1.0, 0.6, 1.0, 0.3][sec.num-1] || 0.5;
+      const noise = (Math.sin(i*0.7)*0.5 + Math.sin(i*1.9)*0.3 + Math.sin(i*3.4)*0.2);
+      const amp = ((noise*0.6) + Math.sin(i*0.3)*0.3) * energy * 45 + 6;
+      const a = Math.abs(amp);
+      top.push(`${i===0?'M':'L'}${x},${mid - a}`);
+      bot.push(`L${x},${mid + a}`);
+    }
+  }
+  const d = top.join(' ') + ' ' + bot.reverse().join(' ') + ' Z';
+  svg.innerHTML = `
+    <defs>
+      <linearGradient id="wg-${svgId}" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%"  stop-color="var(--waveform-1)" stop-opacity="0.95"/>
+        <stop offset="100%" stop-color="var(--waveform-2)" stop-opacity="0.95"/>
+      </linearGradient>
+    </defs>
+    <path d="${d}" fill="url(#wg-${svgId})" />`;
+}
+
+function renderCharLanes(){
+  const lanes = $('#char-lanes');
+  lanes.innerHTML = '';
+  CHARACTERS.forEach(c => {
+    const lane = document.createElement('div');
+    lane.className = 'char-lane';
+    lane.dataset.charId = c.id;
+    const pill = document.createElement('div');
+    pill.className = 'char-pill';
+    pill.style.setProperty('--c', colorVar(c.color));
+    pill.style.left  = `${(c.start/TOTAL)*100}%`;
+    pill.style.width = `${((c.end-c.start)/TOTAL)*100}%`;
+    pill.tabIndex = 0;
+    pill.setAttribute('role','slider');
+    pill.setAttribute('aria-label', `${c.name}: ${c.role}`);
+    pill.setAttribute('aria-valuenow', c.start);
+    pill.innerHTML = `
+      <span class="avatar" style="--c:${colorVar(c.color)};">${c.name[0]}</span>
+      <div class="meta"><b>${c.name}</b><span>${c.role}</span></div>
+      <span class="char-handle left" aria-label="Bal kezdet"></span>
+      <span class="char-handle right" aria-label="Jobb vége"></span>`;
+    attachCharDrag(pill, lane, c);
+    lane.appendChild(pill);
+    lanes.appendChild(lane);
+  });
+}
+
+function renderSceneOrder(){
+  const row = $('#scene-row');
+  row.innerHTML = '';
+  scenes.forEach((sc, i) => {
+    const card = document.createElement('div');
+    card.className = 'scene-card';
+    card.draggable = true;
+    card.dataset.id = sc.id;
+    card.style.setProperty('--sec', colorVar(sc.color));
+    card.setAttribute('aria-selected', sc.id === state.selectedSceneId ? 'true' : 'false');
+    card.tabIndex = 0;
+    card.innerHTML = `
+      <div class="img"></div>
+      <div class="body">
+        <div class="row" style="justify-content:space-between;">
+          <span class="num mono">${pad(i+1)}</span>
+          <button class="del" aria-label="Törlés"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2M6 6l1 14h10l1-14"/></svg></button>
+        </div>
+        <div class="ttl">${sc.title}</div>
+        <div class="tc mono">${fmtShort(sc.start)} - ${fmtShort(sc.end)}</div>
+      </div>`;
+    card.addEventListener('click', e => {
+      if (e.target.closest('.del')) {
+        if (scenes.length > 2) {
+          scenes = scenes.filter(s => s.id !== sc.id);
+          renderAll();
+          toast(`Jelenet törölve: ${sc.title}`);
+        }
+        return;
+      }
+      selectScene(sc.id); seekTo(sc.start);
+    });
+    card.addEventListener('keydown', e => {
+      if((e.metaKey || e.ctrlKey) && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')){
+        e.preventDefault();
+        const dir = e.key === 'ArrowLeft' ? -1 : 1;
+        const idx = scenes.findIndex(s => s.id === sc.id);
+        const ni = idx + dir;
+        if (ni < 0 || ni >= scenes.length) return;
+        const tmp = scenes[idx]; scenes[idx] = scenes[ni]; scenes[ni] = tmp;
+        renderAll();
+        $$('.scene-card').find(c => c.dataset.id === sc.id)?.focus();
+        toast(`Áthelyezve: pozíció ${ni+1}`);
+      }
+    });
+    attachDragDrop(card);
+    row.appendChild(card);
+  });
+}
+
+function attachDragDrop(card){
+  card.addEventListener('dragstart', e => {
+    card.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', card.dataset.id);
+  });
+  card.addEventListener('dragend', () => {
+    card.classList.remove('dragging');
+    $$('.scene-card').forEach(c => c.classList.remove('drag-over'));
+  });
+  card.addEventListener('dragover', e => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    card.classList.add('drag-over');
+  });
+  card.addEventListener('dragleave', () => card.classList.remove('drag-over'));
+  card.addEventListener('drop', e => {
+    e.preventDefault();
+    card.classList.remove('drag-over');
+    const fromId = e.dataTransfer.getData('text/plain');
+    const toId = card.dataset.id;
+    if (fromId === toId) return;
+    const fromIdx = scenes.findIndex(s => s.id === fromId);
+    const toIdx   = scenes.findIndex(s => s.id === toId);
+    const [moved] = scenes.splice(fromIdx, 1);
+    scenes.splice(toIdx, 0, moved);
+    renderAll();
+    toast(`Áthelyezve: ${moved.title} → ${toIdx+1}. pozíció`);
+  });
+}
+
+function attachCharDrag(pill, lane, c){
+  let dragging = null;
+  const onPointerDown = (e, mode) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dragging = { mode, startX: e.clientX, origStart: c.start, origEnd: c.end, laneRect: lane.getBoundingClientRect() };
+    document.addEventListener('pointermove', onMove);
+    document.addEventListener('pointerup', onUp, { once: true });
+  };
+  const onMove = (e) => {
+    if (!dragging) return;
+    const laneW = dragging.laneRect.width;
+    const delta = ((e.clientX - dragging.startX) / laneW) * TOTAL;
+    let s = dragging.origStart, en = dragging.origEnd;
+    if (dragging.mode === 'move') { s += delta; en += delta; }
+    if (dragging.mode === 'left') s += delta;
+    if (dragging.mode === 'right') en += delta;
+    s = Math.max(0, Math.min(s, en - 5));
+    en = Math.max(s + 5, Math.min(en, TOTAL));
+    c.start = s; c.end = en;
+    c.role = `${fmtShort(s)} - ${fmtShort(en)}`;
+    pill.style.left = `${(s/TOTAL)*100}%`;
+    pill.style.width = `${((en-s)/TOTAL)*100}%`;
+    pill.querySelector('.meta span').textContent = c.role;
+    pill.setAttribute('aria-valuenow', Math.floor(s));
+  };
+  const onUp = () => {
+    document.removeEventListener('pointermove', onMove);
+    dragging = null;
+  };
+  pill.addEventListener('pointerdown', e => {
+    if (e.target.classList.contains('char-handle')) return;
+    onPointerDown(e, 'move');
+  });
+  pill.querySelector('.char-handle.left').addEventListener('pointerdown', e => onPointerDown(e, 'left'));
+  pill.querySelector('.char-handle.right').addEventListener('pointerdown', e => onPointerDown(e, 'right'));
+}
+
+function selectScene(id){
+  state.selectedSceneId = id;
+  $$('.section, .scene-thumb, .scene-card').forEach(el => {
+    if (el.dataset.id) el.setAttribute('aria-selected', el.dataset.id === id ? 'true' : 'false');
+  });
+  const sc = scenes.find(s => s.id === id);
+  if (!sc) return;
+  $('#ins-name').textContent = sc.title;
+  $('#ins-time').textContent = `${pad(sc.num)} · ${fmtShort(sc.start)} – ${fmtShort(sc.end)} (${pad(0)}:${pad(sc.end-sc.start)})`;
+  $('#ins-dot').style.background = colorVar(sc.color);
+  $('#ins-keyframe').style.background = `linear-gradient(135deg, var(--sec-${sc.color}), color-mix(in oklch, var(--sec-${sc.color}) 50%, var(--surface-3)))`;
+  $('#ins-len').value = `${pad(0)}:${pad(sc.end-sc.start)}.000`;
+}
+
+function renderAll(){
+  renderRuler();
+  renderSections();
+  renderSceneCount();
+  renderWaveform('wave-svg', 360);
+  renderWaveform('mini-wave', 200);
+  renderCharLanes();
+  renderSceneOrder();
+  selectScene(state.selectedSceneId);
+  updatePlayhead();
+}
+
+/* ============================================================
+   VIEW DATA & RENDERING (Library, Queue, Sounds, Music, etc.)
+   ============================================================ */
+const LIBRARY_PROJECTS = [
+  { title: 'Ködben', meta: 'Music Video · 4:20 · készre szerkesztve', tag: 'AKTUÁLIS', c1:'var(--sec-4)', c2:'var(--sec-2)' },
+  { title: 'Hajnal Budapesten', meta: 'Reklám · 0:30 · vázlat', tag: 'VÁZLAT', c1:'var(--sec-3)', c2:'var(--sec-5)' },
+  { title: 'Northern Lights', meta: 'Music Video · 3:48 · render', tag: 'RENDER', c1:'var(--sec-1)', c2:'var(--sec-6)' },
+  { title: 'Café Praha', meta: 'Dokumentum · 12:00 · szerkesztés', tag: 'AKTÍV', c1:'var(--sec-3)', c2:'var(--sec-4)' },
+  { title: 'Maszka', meta: 'Music Video · 2:55 · készre szerkesztve', tag: 'KÉSZ', c1:'var(--sec-5)', c2:'var(--sec-2)' },
+  { title: 'Új ég, új föld', meta: 'Music Video · 5:12 · vázlat', tag: 'VÁZLAT', c1:'var(--sec-6)', c2:'var(--sec-4)' },
+];
+const QUEUE_ITEMS = [
+  { title: 'Ködben — Final v3',     status: 'run', pct: 67, eta: '02:14', sub: '4K · 60 fps · NVENC' },
+  { title: 'Hajnal Budapesten — Cut 2', status: 'q', pct: 0,  eta: 'várakozik', sub: '1080p · 25 fps' },
+  { title: 'Maszka — Master',       status: 'ok', pct: 100, eta: 'kész', sub: '1080p · 60 fps · 245 MB' },
+  { title: 'Northern Lights — Preview', status: 'ok', pct: 100, eta: 'kész', sub: '720p · 25 fps · 88 MB' },
+];
+const SOUNDS = [
+  { name: 'Cinematic Whoosh',   cat: 'Whoosh',   dur: '00:01.4', c1:'var(--sec-1)', c2:'var(--sec-4)' },
+  { name: 'Heavy Impact',       cat: 'Impact',   dur: '00:00.9', c1:'var(--sec-3)', c2:'var(--sec-4)' },
+  { name: 'Rain on Window',     cat: 'Atmoszféra', dur: '00:30.0', c1:'var(--sec-2)', c2:'var(--sec-6)' },
+  { name: 'UI Click Soft',      cat: 'UI',       dur: '00:00.2', c1:'var(--sec-4)', c2:'var(--sec-2)' },
+  { name: 'Footsteps Concrete', cat: 'Foley',    dur: '00:08.5', c1:'var(--sec-5)', c2:'var(--sec-1)' },
+  { name: 'Sub Drop 808',       cat: 'Impact',   dur: '00:02.1', c1:'var(--sec-4)', c2:'var(--sec-3)' },
+  { name: 'City Ambience',      cat: 'Atmoszféra', dur: '01:00.0', c1:'var(--sec-2)', c2:'var(--sec-1)' },
+  { name: 'Glass Shatter',      cat: 'Impact',   dur: '00:01.2', c1:'var(--sec-3)', c2:'var(--sec-4)' },
+];
+const MUSIC = [
+  { title: 'Ködben — Master',   artist: 'Déreet Studio', bpm: 128, key: 'E min', dur: '04:20', genre: 'Cinematic' },
+  { title: 'Crimson Bloom',     artist: 'Aria K.',       bpm: 96,  key: 'A min', dur: '03:42', genre: 'Pop' },
+  { title: 'Asphalt Dreams',    artist: 'Nodema',        bpm: 140, key: 'F# min',dur: '03:18', genre: 'Hip-hop' },
+  { title: 'Solar Drift',       artist: 'M.O.O.N.',      bpm: 122, key: 'C maj', dur: '04:55', genre: 'Electronic' },
+  { title: 'Reggel a hegyekben',artist: 'Toldi B.',      bpm: 84,  key: 'D maj', dur: '02:45', genre: 'Acoustic' },
+  { title: 'Kék Óra',           artist: 'Rúzsa Magdolna',bpm: 110, key: 'G min', dur: '03:55', genre: 'Pop' },
+];
+const CHARS = [
+  { name: 'Lány',    role: 'Főszereplő', scenes: 4, c1: 'var(--sec-4)', c2: 'var(--sec-3)' },
+  { name: 'Férfi',   role: 'Mellékszereplő', scenes: 3, c1: 'var(--sec-2)', c2: 'var(--sec-5)' },
+  { name: 'Zenekar', role: 'Csoport', scenes: 5, c1: 'var(--sec-5)', c2: 'var(--sec-1)' },
+  { name: 'Táncosok',role: 'Csoport', scenes: 2, c1: 'var(--sec-3)', c2: 'var(--sec-6)' },
+  { name: 'Idős nő', role: 'Statiszta', scenes: 1, c1: 'var(--sec-6)', c2: 'var(--sec-4)' },
+  { name: 'Gyerek',  role: 'Statiszta', scenes: 1, c1: 'var(--sec-1)', c2: 'var(--sec-2)' },
+];
+const LOCS = [
+  { name: 'Éjszakai város',     tag: 'Város',    c1: 'var(--sec-4)', c2: 'var(--sec-2)' },
+  { name: 'Köd a hídon',        tag: 'Város',    c1: 'var(--sec-1)', c2: 'var(--sec-2)' },
+  { name: 'Stúdió fekete háttér', tag: 'Stúdió', c1: 'var(--sec-3)', c2: 'var(--sec-4)' },
+  { name: 'Erdő hajnalban',     tag: 'Természet',c1: 'var(--sec-5)', c2: 'var(--sec-6)' },
+  { name: 'Tetőterasz',         tag: 'Belső',    c1: 'var(--sec-3)', c2: 'var(--sec-1)' },
+  { name: 'Sci-fi folyosó',     tag: 'Sci-fi',   c1: 'var(--sec-6)', c2: 'var(--sec-4)' },
+];
+const FX = [
+  { name: 'Film Grain', cat: 'Color' }, { name: 'Bloom Soft', cat: 'Light Leak' },
+  { name: 'Chromatic', cat: 'Distortion' }, { name: 'VHS Noise', cat: 'Distortion' },
+  { name: 'Snow Particles', cat: 'Particle' }, { name: 'Smoke', cat: 'Particle' },
+  { name: 'Fade to Black', cat: 'Transition' }, { name: 'Glitch Cut', cat: 'Transition' },
+  { name: 'Color Pop', cat: 'Color' }, { name: 'Sepia Tone', cat: 'Color' },
+];
+const HISTORY = [
+  { what: 'Render — Ködben Final v2', when: 'ma 14:32', amt: -120 },
+  { what: 'Karakter generálás — Lány', when: 'ma 11:08', amt: -25 },
+  { what: 'Havi Pro juttatás', when: 'tegnap', amt: +500, pos: true },
+  { what: 'Render — Maszka Master', when: '2 napja', amt: -240 },
+  { what: 'Stílus generálás x4',  when: '3 napja', amt: -40 },
+  { what: 'Csomag vásárlás (1500)', when: '5 napja', amt: +1500, pos: true },
+];
+const LYRICS = [
+  { sec: 1, label: 'INTRO',     t: '0:00',  text: '(zenei bevezető)' },
+  { sec: 2, label: 'VERSE 1',   t: '0:19',  text: 'A köd lassan elnyel mindent a városban' },
+  { sec: 2, label: '',          t: '0:25',  text: 'Csak a fény pislákol a hídon át' },
+  { sec: 2, label: '',          t: '0:32',  text: 'És a léptek hangja elveszik' },
+  { sec: 2, label: '',          t: '0:39',  text: 'Senki sem látja, ki vagyok ma' },
+  { sec: 3, label: 'PRE-CHORUS',t: '0:49',  text: 'Hidd el, ha most elindulok' },
+  { sec: 4, label: 'CHORUS',    t: '1:09',  text: 'A ködben már nem talállak meg' },
+  { sec: 4, label: '',          t: '1:16',  text: 'Csak a régi fény, ami marad' },
+  { sec: 4, label: '',          t: '1:23',  text: 'A ködben már nem talállak meg' },
+  { sec: 4, label: '',          t: '1:30',  text: 'És már nem is keres senki' },
+  { sec: 5, label: 'VERSE 2',   t: '1:39',  text: 'Az utca üres, a város csendes' },
+  { sec: 5, label: '',          t: '1:46',  text: 'A reggel közeledik lassan' },
+  { sec: 8, label: 'BRIDGE',    t: '2:59',  text: 'Talán holnap, talán sosem' },
+  { sec: 10,label: 'OUTRO',     t: '4:09',  text: '(elhalkulás)' },
+];
+
+function renderViews(){
+  // LIBRARY
+  $('#library-grid').innerHTML = LIBRARY_PROJECTS.map(p => `
+    <div class="card" style="--c1:${p.c1};--c2:${p.c2};">
+      <div class="thumb">
+        <span class="tag">${p.tag}</span>
+        <span class="pin"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span>
+      </div>
+      <div class="body"><h3>${p.title}</h3><div class="meta">${p.meta}</div></div>
+    </div>`).join('');
+  $$('#library-grid .card').forEach(c => c.addEventListener('click', () => {
+    showView('editor');
+    toast('Projekt megnyitva: ' + c.querySelector('h3').textContent);
+  }));
+
+  // QUEUE
+  $('#queue-list').innerHTML = QUEUE_ITEMS.map(q => `
+    <div class="queue-item">
+      <div class="qthumb"></div>
+      <div class="qbody"><b>${q.title}</b><span>${q.sub}</span></div>
+      <div style="display:flex; flex-direction:column; gap:4px; align-items:flex-end;">
+        <div class="progress"><span style="width:${q.pct}%;"></span></div>
+        <span class="mono" style="font-size:11px;color:var(--ink-mute);">${q.eta}</span>
+      </div>
+      <span class="badge ${q.status}">${q.status==='ok'?'Kész':q.status==='run'?'Render':'Várakozik'}</span>
+    </div>`).join('');
+
+  // SOUNDS
+  $('#sounds-grid').innerHTML = SOUNDS.map(s => `
+    <div class="card" style="--c1:${s.c1};--c2:${s.c2};">
+      <div class="thumb">
+        <span class="tag">${s.cat}</span>
+        <span class="pin"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></span>
+      </div>
+      <div class="body"><h3>${s.name}</h3><div class="meta mono">${s.dur}</div></div>
+    </div>`).join('');
+
+  // MUSIC
+  $('#music-list').innerHTML = MUSIC.map(t => `
+    <div class="track">
+      <span class="play-mini"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></span>
+      <div class="title"><b>${t.title}</b><span>${t.artist} · ${t.genre}</span></div>
+      <div class="mini-wave"></div>
+      <span class="mono">${t.bpm} BPM</span>
+      <span class="mono">${t.key}</span>
+      <span class="mono">${t.dur}</span>
+      <button class="icon-btn" aria-label="Hozzáad"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+    </div>`).join('');
+  $$('#music-list .track').forEach(t => t.addEventListener('click', () => toast('Lejátszás: ' + t.querySelector('b').textContent)));
+
+  // CHARACTERS
+  $('#char-grid').innerHTML = CHARS.map(c => `
+    <div class="char-card" style="--c1:${c.c1};--c2:${c.c2};">
+      <div class="face"></div>
+      <h3>${c.name}</h3>
+      <span>${c.role}</span>
+      <span class="scenes-tag">${c.scenes} jelenetben</span>
+    </div>`).join('');
+
+  // LOCATIONS
+  $('#loc-grid').innerHTML = LOCS.map(l => `
+    <div class="card" style="--c1:${l.c1};--c2:${l.c2};">
+      <div class="thumb"><span class="tag">${l.tag}</span></div>
+      <div class="body"><h3>${l.name}</h3><div class="meta">Cinematic · 16:9</div></div>
+    </div>`).join('');
+
+  // FX
+  $('#fx-grid').innerHTML = FX.map((f, i) => {
+    const c1 = ['var(--sec-1)','var(--sec-2)','var(--sec-3)','var(--sec-4)','var(--sec-5)','var(--sec-6)'][i % 6];
+    const c2 = ['var(--sec-4)','var(--sec-5)','var(--sec-6)','var(--sec-1)','var(--sec-2)','var(--sec-3)'][i % 6];
+    return `<div class="card" style="--c1:${c1};--c2:${c2};">
+      <div class="thumb"><span class="tag">${f.cat}</span></div>
+      <div class="body" style="padding:8px 10px;"><h3 style="font-size:12px;">${f.name}</h3></div>
+    </div>`;
+  }).join('');
+
+  // LYRICS
+  $('#lyrics').innerHTML = LYRICS.map((l, i) => {
+    const colorVar2 = `var(--sec-${l.sec})`;
+    return `<div class="lyric-row">
+      <span class="lt">${l.t}</span>
+      <span class="ld" style="background:${colorVar2};"></span>
+      <input value="${l.text.replace(/"/g,'&quot;')}" data-idx="${i}">
+      <span class="sec-label">${l.label}</span>
+    </div>`;
+  }).join('');
+
+  // HISTORY
+  $('#history-list').innerHTML = HISTORY.map(h => `
+    <div class="history-row">
+      <div><b>${h.what}</b><span>tranzakció</span></div>
+      <div class="amt ${h.pos?'pos':''} mono">${h.pos?'+':''}${h.amt}</div>
+      <div class="when">${h.when}</div>
+    </div>`).join('');
+}
+
+const VIEW_MAP = {
+  projects: 'editor', library: 'library', queue: 'queue',
+  audio: 'sounds', music: 'music', characters: 'characters',
+  locations: 'locations', effects: 'effects', texts: 'texts',
+  credits: 'credits', settings: 'settings', talking: 'talking'
+};
+
+/* ============================================================
+   PRESETS — save scene settings, apply to current scene or
+   spawn a Talking Head project pre-filled with the preset values.
+   Persisted in localStorage under "cinera.presets".
+   ============================================================ */
+const PRESETS_KEY = 'cinera.presets';
+function loadPresets() {
+  try { return JSON.parse(localStorage.getItem(PRESETS_KEY) || '[]'); }
+  catch { return []; }
+}
+function savePresets(arr) { localStorage.setItem(PRESETS_KEY, JSON.stringify(arr)); }
+let presets = loadPresets();
+
+function captureCurrentSceneAsValues(includeKeys) {
+  const sc = scenes.find(s => s.id === state.selectedSceneId) || scenes[0];
+  const all = {
+    style:     $('select.select-pill[aria-label]')?.value || 'Cinematic · Night City',
+    styleText: 'Cinematic · Night City',
+    camera:    'Követő · Lassú',
+    character: 'Lány — főszereplő',
+    duration:  sc.end - sc.start,
+    cuts:      $('#auto-cuts')?.checked ? 'Auto (Ütések)' : 'Kézi',
+    tweaks:    {
+      mood: parseInt($$('#ipanel-tweaks .range')[0]?.value || 60, 10),
+      cutTempo: parseInt($$('#ipanel-tweaks .range')[1]?.value || 40, 10),
+      fxStrength: parseInt($$('#ipanel-tweaks .range')[2]?.value || 30, 10)
+    },
+    sectionColor: sc.color,
+    sourceSceneTitle: sc.title
+  };
+  if (!includeKeys || includeKeys.length === 0) return all;
+  const out = { sectionColor: sc.color, sourceSceneTitle: sc.title };
+  for (const k of includeKeys) {
+    if (k in all) out[k] = all[k];
+    if (k === 'cuts') out.cuts = all.cuts;
+    if (k === 'tweaks') out.tweaks = all.tweaks;
+  }
+  return out;
+}
+
+function renderPresetList() {
+  const list = $('#preset-list');
+  if (!list) return;
+  if (presets.length === 0) {
+    list.innerHTML = `<div class="preset-empty">Még nincs mentett sablon.<br>Mentsd el az aktuális jelenetet "Mentés sablonként" gombbal.</div>`;
+    return;
+  }
+  list.innerHTML = presets.map(p => {
+    const c = p.values.sectionColor || 4;
+    return `<div class="preset-card" data-id="${p.id}" style="--p1: var(--sec-${c}); --p2: var(--sec-${(c%6)+1});">
+      <span class="pswatch" aria-hidden="true"></span>
+      <div class="ptitle"><b>${p.name}</b><span>${p.values.styleText || 'sablon'} · ${p.targetType}</span></div>
+      <button class="papply" data-act="open" aria-label="Alkalmaz">
+        Alkalmaz
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </div>`;
+  }).join('');
+}
+
+function openApplyMenu(presetId, anchor) {
+  const menu = $('#apply-menu');
+  const p = presets.find(x => x.id === presetId);
+  if (!p) return;
+  menu.innerHTML = `
+    <button data-do="current"><span class="ph-th">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M12 3v18"/></svg>
+    </span>Az aktuális jelenetre</button>
+    <button data-do="all-chorus"><span class="ph-th">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </span>Minden CHORUS jelenetre</button>
+    <hr>
+    <button data-do="talking-head"><span class="ph-th">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3"/><path d="M5 21a7 7 0 0114 0"/></svg>
+    </span>Új Talking Head projekt</button>
+    <button data-do="ad"><span class="ph-th">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="6,4 20,12 6,20"/></svg>
+    </span>Új Reklám projekt (15s)</button>
+    <hr>
+    <button data-do="rename"><span class="ph-th">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4v16h16v-7M19 3l3 3-9 9H10v-3z"/></svg>
+    </span>Átnevezés</button>
+    <button data-do="delete" style="color: var(--danger);"><span class="ph-th" style="background: color-mix(in srgb, var(--danger) 20%, transparent); color: var(--danger);">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2M6 6l1 14h10l1-14"/></svg>
+    </span>Törlés</button>
+  `;
+  // position
+  const r = anchor.getBoundingClientRect();
+  menu.style.top = (r.bottom + 6) + 'px';
+  menu.style.left = Math.max(8, Math.min(window.innerWidth - 240, r.right - 220)) + 'px';
+  menu.setAttribute('aria-hidden', 'false');
+  // bind
+  menu.querySelectorAll('button').forEach(b => {
+    b.onclick = () => {
+      menu.setAttribute('aria-hidden', 'true');
+      handlePresetAction(p, b.dataset.do);
+    };
+  });
+}
+function closeApplyMenu(){ $('#apply-menu')?.setAttribute('aria-hidden', 'true'); }
+
+function applyPresetToCurrentScene(p) {
+  const v = p.values;
+  if (v.styleText) {
+    const styleSel = $$('#ipanel-scene .select-pill')[0];
+    if (styleSel) styleSel.value = v.styleText;
+  }
+  if (v.tweaks) {
+    const r = $$('#ipanel-tweaks .range');
+    if (r[0]) r[0].value = v.tweaks.mood;
+    if (r[1]) r[1].value = v.tweaks.cutTempo;
+    if (r[2]) r[2].value = v.tweaks.fxStrength;
+  }
+  if (v.duration) {
+    const sc = scenes.find(s => s.id === state.selectedSceneId);
+    if (sc) {
+      sc.end = Math.min(TOTAL, sc.start + v.duration);
+      renderAll();
+    }
+  }
+  toast(`Alkalmazva: "${p.name}" → ${$('#ins-name').textContent}`);
+}
+
+function applyPresetToAllChorus(p) {
+  const chorusScenes = scenes.filter(s => s.label === 'CHORUS');
+  if (chorusScenes.length === 0) { toast('Nincs CHORUS jelenet a projektben'); return; }
+  if (p.values.duration) {
+    chorusScenes.forEach(sc => { sc.end = Math.min(TOTAL, sc.start + p.values.duration); });
+    renderAll();
+  }
+  toast(`Alkalmazva: "${p.name}" → ${chorusScenes.length} CHORUS jelenet`);
+}
+
+function applyPresetToTalkingHead(p) {
+  // Populate talking-head view with preset values, then switch to it
+  const dd = $('#th-preset');
+  // ensure preset is in dropdown
+  if (!dd.querySelector(`option[value="${p.id}"]`)) {
+    const opt = document.createElement('option');
+    opt.value = p.id;
+    opt.textContent = p.name;
+    dd.appendChild(opt);
+  }
+  dd.value = p.id;
+  populateTalkingHeadFromPreset(p);
+  showView('talking');
+  toast(`Új Talking Head létrehozva: "${p.name}"`);
+}
+
+function populateTalkingHeadFromPreset(p) {
+  const v = p.values || {};
+  // visual style: pick a vibe based on preset's section color
+  const c = v.sectionColor || 4;
+  const frame = $('#th-frame');
+  frame.style.setProperty('--th1', `var(--sec-${c})`);
+  frame.style.setProperty('--th2', `var(--sec-${(c%6)+1})`);
+  // summary
+  const lines = [];
+  if (v.styleText) lines.push(`<span><b>Stílus:</b> ${v.styleText}</span>`);
+  if (v.camera) lines.push(`<span><b>Kamera:</b> ${v.camera}</span>`);
+  if (v.character) lines.push(`<span><b>Karakter:</b> ${v.character}</span>`);
+  if (v.cuts) lines.push(`<span><b>Vágási pontok:</b> ${v.cuts}</span>`);
+  if (v.tweaks) {
+    lines.push(`<span><b>Hangulat:</b> ${v.tweaks.mood}% · <b>Vágás-tempó:</b> ${v.tweaks.cutTempo}% · <b>Effekt:</b> ${v.tweaks.fxStrength}%</span>`);
+  }
+  $('#th-applied-summary').innerHTML = lines.length ? lines.join('') : '<span>A sablon nem tartalmazott vizuális beállításokat.</span>';
+}
+
+function refreshTalkingHeadPresetSelect() {
+  const dd = $('#th-preset');
+  if (!dd) return;
+  dd.innerHTML = '<option value="">— válassz sablont —</option>' +
+    presets.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
+}
+
+function handlePresetAction(p, action) {
+  switch (action) {
+    case 'current':      applyPresetToCurrentScene(p); break;
+    case 'all-chorus':   applyPresetToAllChorus(p); break;
+    case 'talking-head': applyPresetToTalkingHead(p); break;
+    case 'ad':           toast(`Új Reklám projekt sablonnal: "${p.name}" (15s)`); break;
+    case 'rename': {
+      const newName = prompt('Új név:', p.name);
+      if (newName && newName.trim()) {
+        p.name = newName.trim();
+        savePresets(presets);
+        renderPresetList();
+        refreshTalkingHeadPresetSelect();
+      }
+      break;
+    }
+    case 'delete':
+      if (confirm(`Törlöd ezt a sablont? "${p.name}"`)) {
+        presets = presets.filter(x => x.id !== p.id);
+        savePresets(presets);
+        renderPresetList();
+        refreshTalkingHeadPresetSelect();
+        toast('Sablon törölve');
+      }
+      break;
+  }
+}
+function showView(name){
+  $$('[data-view]').forEach(v => { v.hidden = (v.id !== 'view-' + name); });
+  // hide transport for non-editor views
+  const isEditor = name === 'editor';
+  $('.transport').style.visibility = isEditor ? '' : 'hidden';
+  $('.inspector').style.visibility = isEditor ? '' : 'hidden';
+  $('#tweaks-float').style.display = isEditor ? '' : 'none';
+  // sync sidebar active state
+  $$('.nav-item').forEach(n => {
+    const target = VIEW_MAP[n.dataset.nav] || 'editor';
+    n.toggleAttribute('aria-current', target === name);
+    if (target === name) n.setAttribute('aria-current', 'page');
+  });
+  // scroll main back to top
+  $('#main').scrollTop = 0;
+}
+
+/* ============================================================
+   PLAYBACK
+   ============================================================ */
+let rafId = null;
+function tick(){
+  if (!state.playing) return;
+  if (liveCtx && liveSource) {
+    state.t = playStartT + (liveCtx.currentTime - playStartCtx);
+  }
+  if (state.t >= TOTAL) {
+    if (state.loop) {
+      state.t = 0;
+      startLivePlayback(0);
+    } else {
+      state.t = TOTAL;
+      togglePlay(false);
+    }
+  }
+  updatePlayhead();
+  rafId = requestAnimationFrame(tick);
+}
+function updatePlayhead(){
+  const pct = (state.t / TOTAL) * 100;
+  document.documentElement.style.setProperty('--t', pct);
+  const ph = $('#playhead');
+  const pt = $('#playhead-time');
+  if (ph) ph.style.transform = `translateX(${pct}%)`;
+  if (pt) {
+    pt.style.transform = `translateX(${pct}%) translateX(-50%)`;
+    pt.textContent = fmt(state.t);
+  }
+  $('#timecode-main').innerHTML =
+    `<span class="cur">${fmt(state.t).split('.')[0]}</span><span class="sub">.${fmt(state.t).split('.')[1]}</span>` +
+    `<span class="tot"> / ${fmt(TOTAL)}</span>`;
+  // mini viewport position scales with zoom
+  const vp = $('#minimap-viewport');
+  const vpW = 100 / state.zoom; // percent
+  const center = pct;
+  let left = center - vpW / 2;
+  left = Math.max(0, Math.min(100 - vpW, left));
+  vp.style.left = `${left}%`;
+  vp.style.width = `${vpW}%`;
+  // update active section in section strip — make waveform inherit
+  const sec = scenes.find(s => state.t >= s.start && state.t < s.end);
+  if (sec) {
+    document.documentElement.style.setProperty('--waveform-1', `var(--sec-${sec.color})`);
+  }
+}
+function togglePlay(force){
+  state.playing = (force === undefined) ? !state.playing : !!force;
+  $$('#play-mid, #play-bottom').forEach(b => {
+    b.setAttribute('aria-pressed', state.playing);
+    b.querySelector('.ico-play').classList.toggle('hidden', state.playing);
+    b.querySelector('.ico-pause').classList.toggle('hidden', !state.playing);
+  });
+  if (state.playing) {
+    if (songBuffer) startLivePlayback(state.t);
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(tick);
+  } else {
+    stopLivePlayback();
+    cancelAnimationFrame(rafId);
+  }
+}
+function seekTo(t){
+  state.t = Math.max(0, Math.min(TOTAL, t));
+  updatePlayhead();
+  if (state.playing && songBuffer) startLivePlayback(state.t);
+}
+
+/* ============================================================
+   THEME / DEVICE
+   ============================================================ */
+function setTheme(name){
+  state.theme = name;
+  document.documentElement.dataset.theme = name;
+  localStorage.setItem('cinera.theme', name);
+  $$('.theme-switcher button').forEach(b => b.setAttribute('aria-pressed', b.dataset.themeSet === name));
+  // re-render waveform so colors pick up new tokens
+  renderWaveform('wave-svg', 360);
+  renderWaveform('mini-wave', 200);
+}
+function setDevice(name){
+  state.device = name;
+  document.documentElement.dataset.device = name;
+  $$('.device-switcher button').forEach(b => b.setAttribute('aria-pressed', b.dataset.deviceSet === name));
+}
+
+/* ============================================================
+   WIRING
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  setTheme(state.theme);
+  renderAll();
+  // Kick off audio synthesis in the background; waveform updates when ready
+  initAudio();
+  // volume sliders
+  $$('#vol-main, #vol-bottom').forEach(s => {
+    s.value = Math.round(state.volume * 100);
+    s.addEventListener('input', () => {
+      const v = parseInt(s.value, 10) / 100;
+      setVolume(v);
+      // sync the other slider
+      $$('#vol-main, #vol-bottom').forEach(o => { if (o !== s) o.value = s.value; });
+      if (state.muted && v > 0) setMute(false);
+    });
+  });
+  // mute buttons (the speaker icons next to volume sliders)
+  $$('.vol > svg').forEach(svg => {
+    const btn = document.createElement('button');
+    btn.className = 'icon-btn mute-btn';
+    btn.style.cssText = 'width:24px;height:24px;';
+    btn.setAttribute('aria-label', 'Némítás');
+    btn.setAttribute('aria-pressed', String(state.muted));
+    btn.dataset.muted = state.muted;
+    btn.appendChild(svg.cloneNode(true));
+    svg.replaceWith(btn);
+    btn.addEventListener('click', () => setMute(!state.muted));
+  });
+
+  // theme buttons
+  $$('.theme-switcher button').forEach(b => b.addEventListener('click', () => {
+    setTheme(b.dataset.themeSet);
+    $$('[data-theme-set-2]').forEach(x => x.setAttribute('aria-pressed', x.dataset.themeSet2 === state.theme ? 'true' : 'false'));
+  }));
+  $$('.device-switcher button').forEach(b => b.addEventListener('click', () => setDevice(b.dataset.deviceSet)));
+
+  // play buttons
+  $$('#play-mid, #play-bottom').forEach(b => b.addEventListener('click', () => togglePlay()));
+
+  // tabs (timeline)
+  $$('.tab').forEach(t => {
+    t.addEventListener('click', () => {
+      $$('.tab').forEach(x => x.setAttribute('aria-selected', x === t ? 'true' : 'false'));
+      const view = t.dataset.tab;
+      if (view === 'beats') toast('Ütemek nézet (BPM = 128)');
+      if (view === 'structure') toast('Szerkezet nézet — szakaszok időrendben');
+    });
+    t.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      const tabs = $$('.tab');
+      const i = tabs.indexOf(t);
+      const ni = e.key === 'ArrowLeft' ? (i-1+tabs.length)%tabs.length : (i+1)%tabs.length;
+      tabs[ni].focus(); tabs[ni].click();
+    });
+  });
+
+  // inspector tabs
+  $$('.inspector-tab').forEach(t => {
+    t.addEventListener('click', () => {
+      $$('.inspector-tab').forEach(x => x.setAttribute('aria-selected', x === t ? 'true' : 'false'));
+      $$('#ipanel-scene, #ipanel-tweaks, #ipanel-render').forEach(p => p.classList.add('hidden'));
+      $('#ipanel-' + t.dataset.itab).classList.remove('hidden');
+    });
+  });
+
+  // populate every secondary view
+  renderViews();
+  // ensure editor view visible at start
+  showView('editor');
+
+  // ---------- PRESETS ----------
+  renderPresetList();
+  refreshTalkingHeadPresetSelect();
+
+  const spModal = $('#save-preset-modal');
+  $('#save-preset-btn').addEventListener('click', () => {
+    spModal.querySelector('input[name="pname"]').value = '';
+    spModal.setAttribute('aria-hidden', 'false');
+    setTimeout(() => spModal.querySelector('input[name="pname"]').focus(), 50);
+  });
+  $('#sp-cancel').addEventListener('click', () => spModal.setAttribute('aria-hidden', 'true'));
+  spModal.addEventListener('click', e => { if (e.target === spModal) spModal.setAttribute('aria-hidden', 'true'); });
+  $('#save-preset-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const name = (fd.get('pname') || '').toString().trim();
+    if (!name) return;
+    const incl = fd.getAll('incl');
+    const ptype = fd.get('ptype');
+    const styleSel = $$('#ipanel-scene .select-pill')[0];
+    const camSel = $$('#ipanel-scene .select-pill')[1];
+    const values = captureCurrentSceneAsValues(incl);
+    if (incl.includes('style')) values.styleText = styleSel?.value || values.styleText;
+    if (incl.includes('camera')) values.camera = camSel?.value || values.camera;
+    const preset = {
+      id: 'p' + Date.now().toString(36),
+      name,
+      targetType: ptype,
+      values,
+      created: new Date().toISOString()
+    };
+    presets.unshift(preset);
+    savePresets(presets);
+    renderPresetList();
+    refreshTalkingHeadPresetSelect();
+    spModal.setAttribute('aria-hidden', 'true');
+    toast(`Sablon mentve: "${name}"`);
+  });
+
+  // Per-card apply menu
+  $('#preset-list').addEventListener('click', e => {
+    const btn = e.target.closest('.papply');
+    const card = e.target.closest('.preset-card');
+    if (btn && card) {
+      e.stopPropagation();
+      openApplyMenu(card.dataset.id, btn);
+      return;
+    }
+    // click on the card body (not button) → quick apply to current scene
+    if (card && !btn) {
+      const p = presets.find(x => x.id === card.dataset.id);
+      if (p) applyPresetToCurrentScene(p);
+    }
+  });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('#apply-menu') && !e.target.closest('.papply')) closeApplyMenu();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeApplyMenu(); spModal.setAttribute('aria-hidden', 'true'); } });
+
+  // Talking-Head view interactions
+  $('#th-back').addEventListener('click', () => showView('editor'));
+  $('#th-render').addEventListener('click', () => toast('Talking Head render indul…'));
+  $('#th-preset').addEventListener('change', e => {
+    const p = presets.find(x => x.id === e.target.value);
+    if (p) populateTalkingHeadFromPreset(p);
+  });
+  $('#th-skin').addEventListener('input', e => $('#th-frame').style.setProperty('--th-skin', e.target.value));
+  $('#th-cloth').addEventListener('input', e => $('#th-frame').style.setProperty('--th-cloth', e.target.value));
+  $('#th-cap-input').addEventListener('input', e => { $('#th-caption').textContent = e.target.value || ' '; });
+  $('#th-bg-style').addEventListener('change', e => {
+    const map = {
+      'Stúdió fekete':       ['#0c0c12', '#1a1a26'],
+      'Színes gradiens':     [null, null],
+      'Életlen utca':        ['#2a3140', '#5a6378'],
+      'Otthoni iroda':       ['#5d4a3a', '#8a7560']
+    };
+    const sel = e.target.value;
+    const v = map[sel] || [null, null];
+    if (v[0] === null) {
+      // re-apply preset section colors
+      const p = presets.find(x => x.id === $('#th-preset').value);
+      if (p) populateTalkingHeadFromPreset(p);
+    } else {
+      $('#th-frame').style.setProperty('--th1', v[0]);
+      $('#th-frame').style.setProperty('--th2', v[1]);
+    }
+  });
+  // sync settings theme chip with the current theme
+  function syncSettingsTheme(){
+    $$('[data-theme-set-2]').forEach(b => b.setAttribute('aria-pressed', b.dataset.themeSet2 === state.theme ? 'true' : 'false'));
+  }
+  syncSettingsTheme();
+
+  // sidebar nav -> route to view
+  $$('.nav-item').forEach(n => {
+    n.addEventListener('click', () => {
+      const target = VIEW_MAP[n.dataset.nav] || 'editor';
+      showView(target);
+      toast('Megnyitva: ' + n.querySelector('.nav-label').textContent);
+    });
+    n.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); n.click(); } });
+  });
+
+  // settings tabs
+  $$('.settings-tab').forEach(t => t.addEventListener('click', () => {
+    $$('.settings-tab').forEach(x => x.removeAttribute('aria-current'));
+    t.setAttribute('aria-current', 'page');
+    $$('.settings-section').forEach(s => s.classList.add('hidden'));
+    $('#stab-' + t.dataset.stab).classList.remove('hidden');
+  }));
+  // settings theme buttons reuse main theme switcher
+  $$('[data-theme-set-2]').forEach(b => b.addEventListener('click', () => {
+    setTheme(b.dataset.themeSet2);
+    $$('[data-theme-set-2]').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+  }));
+  // generic chip toggles within filter rows
+  $$('.filter-row').forEach(row => {
+    row.addEventListener('click', e => {
+      const c = e.target.closest('.chip');
+      if (!c) return;
+      row.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', x === c ? 'true' : 'false'));
+    });
+  });
+  // search inputs do nothing harmful — just demo focus
+  $$('.view-search').forEach(s => s.addEventListener('input', () => {
+    // simple client-side filter: hide cards whose text doesn't include query
+    const q = s.value.toLowerCase().trim();
+    const view = s.closest('.view');
+    view.querySelectorAll('.card, .track, .char-card, .lyric-row').forEach(card => {
+      const text = card.textContent.toLowerCase();
+      card.style.display = (!q || text.includes(q)) ? '' : 'none';
+    });
+  }));
+
+  // mobile tab bar
+  $$('[data-mobtab]').forEach(b => {
+    b.addEventListener('click', () => {
+      $$('[data-mobtab]').forEach(x => x.setAttribute('aria-selected', x === b ? 'true' : 'false'));
+      toast('Mobil: ' + b.textContent.trim());
+    });
+  });
+
+  // ---------- Waveform: click-to-seek + drag-to-scrub ----------
+  const wf = $('#waveform');
+  let wfDrag = null;
+
+  function timeFromClientX(clientX, rect) {
+    const x = Math.max(0, Math.min(rect.width, clientX - rect.left));
+    return (x / rect.width) * TOTAL;
+  }
+
+  // Click anywhere on the waveform background → instant seek
+  wf.addEventListener('pointerdown', e => {
+    // Don't hijack drags that started on the playhead/time pill — they have their own handlers
+    if (e.target.closest('.playhead') || e.target.closest('.playhead-time')) return;
+    if (e.button !== 0) return; // left click only
+    e.preventDefault();
+    const rect = wf.getBoundingClientRect();
+    wfDrag = { rect, wasPlaying: state.playing };
+    wf.setPointerCapture(e.pointerId);
+    seekTo(timeFromClientX(e.clientX, rect));
+  });
+  wf.addEventListener('pointermove', e => {
+    if (!wfDrag) return;
+    seekTo(timeFromClientX(e.clientX, wfDrag.rect));
+  });
+  wf.addEventListener('pointerup', e => {
+    if (!wfDrag) return;
+    wf.releasePointerCapture(e.pointerId);
+    wfDrag = null;
+  });
+  wf.addEventListener('pointercancel', () => { wfDrag = null; });
+  wf.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft')  { seekTo(state.t - (e.shiftKey ? 10 : 1)); e.preventDefault(); }
+    if (e.key === 'ArrowRight') { seekTo(state.t + (e.shiftKey ? 10 : 1)); e.preventDefault(); }
+    if (e.key === 'Home')       { seekTo(0); e.preventDefault(); }
+    if (e.key === 'End')        { seekTo(TOTAL); e.preventDefault(); }
+  });
+
+  // ---------- Playhead: dedicated drag handle ----------
+  function attachPlayheadDrag(handle) {
+    let drag = null;
+    handle.addEventListener('pointerdown', e => {
+      if (e.button !== 0) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const rect = wf.getBoundingClientRect();
+      drag = { rect, wasPlaying: state.playing };
+      handle.setPointerCapture(e.pointerId);
+      $('#playhead').classList.add('dragging');
+      // pause audio while scrubbing — feels right and avoids artifacts
+      if (state.playing) stopLivePlayback();
+    });
+    handle.addEventListener('pointermove', e => {
+      if (!drag) return;
+      seekTo(timeFromClientX(e.clientX, drag.rect));
+    });
+    const finish = (e) => {
+      if (!drag) return;
+      if (e && e.pointerId !== undefined) handle.releasePointerCapture?.(e.pointerId);
+      $('#playhead').classList.remove('dragging');
+      // resume audio if we were playing
+      if (drag.wasPlaying && state.playing && songBuffer) startLivePlayback(state.t);
+      drag = null;
+    };
+    handle.addEventListener('pointerup', finish);
+    handle.addEventListener('pointercancel', finish);
+  }
+  attachPlayheadDrag($('#playhead'));
+  attachPlayheadDrag($('#playhead-time'));
+
+  // ---------- Section strip + scene thumbs lane: also scrub on drag ----------
+  ['#section-strip', '#scene-thumbs'].forEach(sel => {
+    const lane = $(sel);
+    if (!lane) return;
+    let laneDrag = null;
+    lane.addEventListener('pointerdown', e => {
+      // single click on a section/thumb still selects via the existing click handler
+      // — only start scrubbing if user holds shift/alt OR drags > 4px
+      if (e.button !== 0) return;
+      laneDrag = { rect: wf.getBoundingClientRect(), startX: e.clientX, scrubbing: false, pid: e.pointerId };
+    });
+    lane.addEventListener('pointermove', e => {
+      if (!laneDrag) return;
+      if (!laneDrag.scrubbing && Math.abs(e.clientX - laneDrag.startX) > 4) {
+        laneDrag.scrubbing = true;
+        lane.setPointerCapture(laneDrag.pid);
+      }
+      if (laneDrag.scrubbing) seekTo(timeFromClientX(e.clientX, laneDrag.rect));
+    });
+    lane.addEventListener('pointerup', e => {
+      if (laneDrag && laneDrag.scrubbing) {
+        lane.releasePointerCapture(laneDrag.pid);
+      }
+      laneDrag = null;
+    });
+    lane.addEventListener('pointercancel', () => { laneDrag = null; });
+  });
+
+  // minimap viewport drag = scroll-like
+  const vp = $('#minimap-viewport');
+  let vpDrag = null;
+  vp.addEventListener('pointerdown', e => {
+    vpDrag = { x: e.clientX, t: state.t };
+    document.addEventListener('pointermove', vpMove);
+    document.addEventListener('pointerup', () => { vpDrag = null; document.removeEventListener('pointermove', vpMove); }, { once: true });
+  });
+  function vpMove(e){
+    if (!vpDrag) return;
+    const r = $('#minimap').getBoundingClientRect();
+    const dx = (e.clientX - vpDrag.x) / r.width;
+    seekTo(vpDrag.t + dx * TOTAL);
+  }
+  $('#minimap').addEventListener('click', e => {
+    if (e.target === vp) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    seekTo(((e.clientX - r.left) / r.width) * TOTAL);
+  });
+
+  // transport extras
+  $('#rewind').addEventListener('click', () => seekTo(state.t - 5));
+  $('#ffwd').addEventListener('click', () => seekTo(state.t + 5));
+  $('#loop-btn').addEventListener('click', () => {
+    state.loop = !state.loop;
+    $('#loop-btn').setAttribute('aria-pressed', state.loop);
+    toast('Loop ' + (state.loop ? 'be' : 'ki'));
+  });
+  $('#fs-btn').addEventListener('click', () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen?.();
+  });
+
+  // scene order arrows
+  $('#scene-prev').addEventListener('click', () => $('#scene-row').scrollBy({ left: -200, behavior: 'smooth' }));
+  $('#scene-next').addEventListener('click', () => $('#scene-row').scrollBy({ left:  200, behavior: 'smooth' }));
+
+  // add scene
+  $('#add-scene').addEventListener('click', () => {
+    const last = scenes[scenes.length - 1];
+    const newScene = {
+      id: 's' + (Date.now()),
+      label: 'NEW',
+      title: `Jelenet ${scenes.length + 1}`,
+      start: last.end,
+      end: Math.min(TOTAL, last.end + 10),
+      color: ((scenes.length) % 6) + 1,
+      num: scenes.length + 1
+    };
+    scenes.push(newScene);
+    renderAll();
+    toast('Új jelenet hozzáadva');
+  });
+
+  // length input arrows
+  $('#len-down').addEventListener('click', () => bumpLen(-1));
+  $('#len-up').addEventListener('click', () => bumpLen(1));
+  function bumpLen(d){
+    const sc = scenes.find(s => s.id === state.selectedSceneId);
+    if (!sc) return;
+    sc.end = Math.max(sc.start + 5, Math.min(TOTAL, sc.end + d));
+    renderAll();
+  }
+
+  // notifications popover
+  const notifBtn = $('#notif-btn'), notifPop = $('#notif-pop');
+  notifBtn.addEventListener('click', () => {
+    const open = notifPop.getAttribute('aria-hidden') === 'false';
+    closeAllPopovers();
+    if (!open) { notifPop.setAttribute('aria-hidden', 'false'); notifBtn.setAttribute('aria-expanded', 'true'); }
+  });
+
+  // render menu
+  const renderMenuBtn = $('#render-menu-btn'), renderPop = $('#render-pop');
+  renderMenuBtn.addEventListener('click', () => {
+    const open = renderPop.getAttribute('aria-hidden') === 'false';
+    closeAllPopovers();
+    if (!open) renderPop.setAttribute('aria-hidden', 'false');
+  });
+  $$('.render-menu li').forEach(li => li.addEventListener('click', () => {
+    toast('Render: ' + li.firstChild.textContent.trim());
+    renderPop.setAttribute('aria-hidden', 'true');
+  }));
+  $('#render-btn').addEventListener('click', () => toast('Render indul...'));
+
+  // user, settings, credits popovers
+  function bindPopover(triggerSel, popSel){
+    const t = $(triggerSel), p = $(popSel);
+    if (!t || !p) return;
+    t.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = p.getAttribute('aria-hidden') === 'false';
+      closeAllPopovers();
+      if (!open) p.setAttribute('aria-hidden', 'false');
+    });
+  }
+  bindPopover('#user-pop', '#user-pop-menu');
+  bindPopover('.topbar .icon-btn[aria-label="Beállítások"]', '#settings-pop');
+  bindPopover('.credits .add', '#credits-pop');
+
+  $$('[data-user-action]').forEach(li => li.addEventListener('click', e => {
+    const map = { profile:'Profil megnyitva', studios:'Stúdió választó', billing:'Számlázás', invite:'Csapat meghívás link másolva', logout:'Kijelentkezve (demo)' };
+    toast(map[li.dataset.userAction] || li.textContent);
+    closeAllPopovers();
+  }));
+  $$('[data-settings]').forEach(li => li.addEventListener('click', () => {
+    toast('Beállítás: ' + li.textContent);
+    closeAllPopovers();
+  }));
+  $$('[data-credits]').forEach(li => li.addEventListener('click', () => {
+    toast('Vásárlás: ' + li.textContent.trim());
+    closeAllPopovers();
+  }));
+
+  // Floating Tweaks panel
+  const tweaksFloat = $('#tweaks-float'), tweaksFab = $('#tweaks-fab');
+  function openTweaks(){
+    tweaksFloat.removeAttribute('data-user-closed');
+    tweaksFloat.setAttribute('data-open', 'true');
+    tweaksFab.style.display = 'none';
+  }
+  function closeTweaks(){
+    tweaksFloat.setAttribute('data-user-closed', 'true');
+    tweaksFloat.removeAttribute('data-open');
+    if (state.theme === 'original') tweaksFab.style.display = 'inline-flex';
+  }
+  $('#tweaks-close').addEventListener('click', closeTweaks);
+  tweaksFab.addEventListener('click', openTweaks);
+  $('#tweaks-apply').addEventListener('click', () => { toast('Tweakek alkalmazva'); });
+  $$('.tw-btn').forEach(b => b.addEventListener('click', () => {
+    $$('.tw-btn').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+  }));
+
+  // close popovers on outside click + Esc
+  document.addEventListener('click', e => {
+    if (e.target.closest('.popover') || e.target.closest('#notif-btn') || e.target.closest('#render-menu-btn')
+        || e.target.closest('#user-pop') || e.target.closest('.topbar .icon-btn[aria-label="Beállítások"]')
+        || e.target.closest('.credits .add')) return;
+    closeAllPopovers();
+  });
+  function closeAllPopovers(){
+    $$('.popover').forEach(p => p.setAttribute('aria-hidden', 'true'));
+    notifBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  // help / shortcuts modal
+  const kbdModal = $('#kbd-modal');
+  $('#help-btn').addEventListener('click', () => kbdModal.setAttribute('aria-hidden', 'false'));
+  $('#kbd-close').addEventListener('click', () => kbdModal.setAttribute('aria-hidden', 'true'));
+  kbdModal.addEventListener('click', e => { if (e.target === kbdModal) kbdModal.setAttribute('aria-hidden', 'true'); });
+
+  // global keyboard shortcuts
+  document.addEventListener('keydown', e => {
+    if (e.target.matches('input, select, textarea')) return;
+    if (e.key === ' ') { e.preventDefault(); togglePlay(); }
+    if (e.key.toLowerCase() === 'j') seekTo(state.t - 5);
+    if (e.key.toLowerCase() === 'l') seekTo(state.t + 5);
+    if (e.key.toLowerCase() === 's' && !e.metaKey && !e.ctrlKey) $('#snap').focus();
+    if (e.key.toLowerCase() === 't') {
+      const order = ['midnight','daylight','aurora'];
+      setTheme(order[(order.indexOf(state.theme) + 1) % order.length]);
+      toast('Téma: ' + state.theme);
+    }
+    if (e.key.toLowerCase() === 'm') setDevice(state.device === 'desktop' ? 'mobile' : 'desktop');
+    if (e.key === '?' || (e.shiftKey && e.key === '/')) kbdModal.setAttribute('aria-hidden', 'false');
+    if (e.key === 'Escape') { closeAllPopovers(); kbdModal.setAttribute('aria-hidden', 'true'); }
+    if ((e.metaKey || e.ctrlKey) && e.key === 'r') { e.preventDefault(); toast('Render indul...'); }
+    if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key.toLowerCase() === 'n') { e.preventDefault(); $('#add-scene').click(); }
+  });
+
+  // tempo + advanced + apply tweaks toasts
+  $('#tempo-btn').addEventListener('click', e => {
+    const on = e.currentTarget.getAttribute('aria-pressed') === 'true';
+    e.currentTarget.setAttribute('aria-pressed', !on);
+    toast(on ? 'Tempo szerkesztés ki' : 'Tempo szerkesztés be');
+  });
+  $('#advanced').addEventListener('click', () => toast('Haladó beállítások (placeholder)'));
+  $('#apply-tweaks').addEventListener('click', () => toast('Tweakek alkalmazva'));
+  $('#regen-frame').addEventListener('click', () => {
+    const sc = scenes.find(s => s.id === state.selectedSceneId);
+    sc.color = ((sc.color) % 6) + 1;
+    renderAll();
+    toast('Új kezdő képkocka generálva');
+  });
+
+  // sidebar toggle (mobile)
+  $('#sidebar-toggle').addEventListener('click', () => {
+    document.body.classList.toggle('sidebar-collapsed');
+    toast('Oldalsáv ' + (document.body.classList.contains('sidebar-collapsed') ? 'rejtve' : 'látható'));
+  });
+
+  // zoom buttons (cosmetic for waveform — adjusts viewport on minimap)
+  $('#zoom-in').addEventListener('click', () => { state.zoom = Math.min(8, state.zoom * 1.3); updatePlayhead(); });
+  $('#zoom-out').addEventListener('click', () => { state.zoom = Math.max(1, state.zoom / 1.3); updatePlayhead(); });
+
+  // initial toast
+  setTimeout(() => toast('Tipp: nyomd meg a T-t a téma váltáshoz, M-et a mobil nézetért, ?-t a billentyűparancsokért'), 600);
+});
+</script>
+</body>
+</html>

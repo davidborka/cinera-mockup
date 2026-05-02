@@ -1,0 +1,15 @@
+# Build / debug artefacts
+cinera-served.html
+.playwright-mcp/
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Node (in case anything gets added later)
+node_modules/
+package-lock.json
