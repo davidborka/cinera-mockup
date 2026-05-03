@@ -3191,12 +3191,24 @@ function renderAll(){
    VIEW DATA & RENDERING (Library, Queue, Sounds, Music, etc.)
    ============================================================ */
 const LIBRARY_PROJECTS = [
-  { title: 'Ködben', meta: 'Music Video · 4:20 · készre szerkesztve', tag: 'AKTUÁLIS', c1:'var(--sec-4)', c2:'var(--sec-2)' },
-  { title: 'Hajnal Budapesten', meta: 'Reklám · 0:30 · vázlat', tag: 'VÁZLAT', c1:'var(--sec-3)', c2:'var(--sec-5)' },
-  { title: 'Northern Lights', meta: 'Music Video · 3:48 · render', tag: 'RENDER', c1:'var(--sec-1)', c2:'var(--sec-6)' },
-  { title: 'Café Praha', meta: 'Dokumentum · 12:00 · szerkesztés', tag: 'AKTÍV', c1:'var(--sec-3)', c2:'var(--sec-4)' },
-  { title: 'Maszka', meta: 'Music Video · 2:55 · készre szerkesztve', tag: 'KÉSZ', c1:'var(--sec-5)', c2:'var(--sec-2)' },
-  { title: 'Új ég, új föld', meta: 'Music Video · 5:12 · vázlat', tag: 'VÁZLAT', c1:'var(--sec-6)', c2:'var(--sec-4)' },
+  { title: 'Ködben',              type: 'Music Video',  dur: '4:20', scenes: 10, tag: 'AKTUÁLIS', mod: 'most',    c1:'var(--sec-4)', c2:'var(--sec-2)' },
+  { title: 'Hajnal Budapesten',   type: 'Reklám',       dur: '0:30', scenes:  5, tag: 'VÁZLAT',   mod: '2 órája', c1:'var(--sec-3)', c2:'var(--sec-5)' },
+  { title: 'Northern Lights',     type: 'Music Video',  dur: '3:48', scenes:  9, tag: 'RENDER',   mod: '5 órája', c1:'var(--sec-1)', c2:'var(--sec-6)' },
+  { title: 'Café Praha',          type: 'Dokumentum',   dur:'12:00', scenes: 24, tag: 'AKTÍV',    mod: 'tegnap',  c1:'var(--sec-3)', c2:'var(--sec-4)' },
+  { title: 'Maszka',              type: 'Music Video',  dur: '2:55', scenes:  8, tag: 'KÉSZ',     mod: '2 napja', c1:'var(--sec-5)', c2:'var(--sec-2)' },
+  { title: 'Új ég, új föld',      type: 'Music Video',  dur: '5:12', scenes: 12, tag: 'VÁZLAT',   mod: '3 napja', c1:'var(--sec-6)', c2:'var(--sec-4)' },
+  { title: 'Reggeli rituálé',     type: 'Talking Head', dur: '1:00', scenes:  3, tag: 'KÉSZ',     mod: '4 napja', c1:'var(--sec-2)', c2:'var(--sec-1)' },
+  { title: 'Tihanyi nyár',        type: 'Reklám',       dur: '0:45', scenes:  6, tag: 'KÉSZ',     mod: '5 napja', c1:'var(--sec-3)', c2:'var(--sec-5)' },
+  { title: 'Vasárnap délután',    type: 'Music Video',  dur: '3:30', scenes: 11, tag: 'KÉSZ',     mod: '1 hete',  c1:'var(--sec-2)', c2:'var(--sec-3)' },
+  { title: 'Magyar utca',         type: 'Dokumentum',   dur: '8:24', scenes: 18, tag: 'KÉSZ',     mod: '1 hete',  c1:'var(--sec-3)', c2:'var(--sec-1)' },
+  { title: 'Crimson Bloom',       type: 'Music Video',  dur: '3:42', scenes: 10, tag: 'KÉSZ',     mod: '2 hete',  c1:'var(--sec-4)', c2:'var(--sec-3)' },
+  { title: 'Asphalt Dreams',      type: 'Music Video',  dur: '3:18', scenes:  9, tag: 'ARCHÍV',   mod: '2 hete',  c1:'var(--sec-4)', c2:'var(--sec-2)' },
+  { title: 'Nordica — termékspot',type: 'Reklám',       dur: '0:15', scenes:  3, tag: 'KÉSZ',     mod: '3 hete',  c1:'var(--sec-1)', c2:'var(--sec-2)' },
+  { title: 'Mélykék',             type: 'Music Video',  dur: '4:01', scenes: 11, tag: 'ARCHÍV',   mod: '1 hónapja', c1:'var(--sec-2)', c2:'var(--sec-6)' },
+  { title: 'Podcast intro v3',    type: 'Talking Head', dur: '0:10', scenes:  1, tag: 'KÉSZ',     mod: '1 hónapja', c1:'var(--sec-5)', c2:'var(--sec-4)' },
+  { title: 'Solar Drift',         type: 'Music Video',  dur: '4:55', scenes: 14, tag: 'ARCHÍV',   mod: '2 hónapja', c1:'var(--sec-5)', c2:'var(--sec-1)' },
+  { title: 'Téli reggel',         type: 'Dokumentum',   dur: '6:30', scenes: 12, tag: 'ARCHÍV',   mod: '2 hónapja', c1:'var(--sec-1)', c2:'var(--sec-2)' },
+  { title: 'Kék Óra (rough cut)', type: 'Music Video',  dur: '3:55', scenes:  7, tag: 'VÁZLAT',   mod: '3 hónapja', c1:'var(--sec-2)', c2:'var(--sec-4)' },
 ];
 const QUEUE_ITEMS = [
   { title: 'Ködben — Final v3',     status: 'run', pct: 67, eta: '02:14', sub: '4K · 60 fps · NVENC' },
@@ -3272,18 +3284,68 @@ const LYRICS = [
 
 function renderViews(){
   // LIBRARY
-  $('#library-grid').innerHTML = LIBRARY_PROJECTS.map(p => `
-    <div class="card" style="--c1:${p.c1};--c2:${p.c2};">
-      <div class="thumb">
-        <span class="tag">${p.tag}</span>
-        <span class="pin"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span>
-      </div>
-      <div class="body"><h3>${p.title}</h3><div class="meta">${p.meta}</div></div>
-    </div>`).join('');
-  $$('#library-grid .card').forEach(c => c.addEventListener('click', () => {
-    showView('editor');
-    toast('Projekt megnyitva: ' + c.querySelector('h3').textContent);
-  }));
+  function renderLibrary(filterType, query) {
+    const filtered = LIBRARY_PROJECTS.filter(p => {
+      const typeOk = !filterType || filterType === 'all' || p.type === filterType ||
+                     (filterType === 'archive' && p.tag === 'ARCHÍV') ||
+                     (filterType === 'draft' && p.tag === 'VÁZLAT');
+      const q = (query || '').toLowerCase().trim();
+      const txtOk = !q || (p.title + ' ' + p.type + ' ' + p.tag).toLowerCase().includes(q);
+      return typeOk && txtOk;
+    });
+    if (filtered.length === 0) {
+      $('#library-grid').innerHTML = `<div class="preset-empty" style="grid-column: 1/-1;">Nincs találat</div>`;
+      return;
+    }
+    $('#library-grid').innerHTML = filtered.map(p => {
+      const tagCls = p.tag === 'AKTUÁLIS' ? 'run' : (p.tag === 'KÉSZ' ? 'ok' : (p.tag === 'RENDER' ? 'run' : 'q'));
+      const typeIcon = ({
+        'Music Video': '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+        'Reklám':       '<path d="M3 11l18-7v17l-18-7zM5 11v3l5 2"/><path d="M9 17a3 3 0 006 0"/>',
+        'Dokumentum':   '<path d="M14 3v5h5M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M9 13h6M9 17h4"/>',
+        'Talking Head': '<circle cx="12" cy="9" r="3"/><path d="M5 21a7 7 0 0114 0"/>'
+      })[p.type] || '<rect x="3" y="3" width="18" height="18" rx="2"/>';
+      return `<div class="card" data-title="${p.title}" style="--c1:${p.c1};--c2:${p.c2};">
+        <div class="thumb">
+          <span class="tag">${p.tag}</span>
+          <span class="pin" title="Csillagozás">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </span>
+          <span style="position:absolute; right:8px; bottom:8px; background:rgba(0,0,0,.45); color:white; font-size:10px; padding:2px 6px; border-radius:4px; font-family:'JetBrains Mono',monospace;">${p.dur}</span>
+        </div>
+        <div class="body">
+          <h3>${p.title}</h3>
+          <div class="meta">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${typeIcon}</svg>
+            ${p.type} · ${p.scenes} jelenet · ${p.mod}
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+    $$('#library-grid .card').forEach(c => c.addEventListener('click', () => {
+      showView('editor');
+      toast('Projekt megnyitva: ' + c.dataset.title);
+    }));
+  }
+  renderLibrary();
+  // chips on the library view filter by type
+  const libView = $('#view-library');
+  if (libView) {
+    libView.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const map = { 'Összes': null, 'Music Video': 'Music Video', 'Reklám': 'Reklám',
+                      'Dokumentum': 'Dokumentum', 'Vázlat': 'draft', 'Archív': 'archive' };
+        const t = map[chip.textContent.trim()];
+        renderLibrary(t, libView.querySelector('.view-search').value);
+      });
+    });
+    libView.querySelector('.view-search').addEventListener('input', e => {
+      const active = libView.querySelector('.chip[aria-pressed="true"]');
+      const map = { 'Összes': null, 'Music Video': 'Music Video', 'Reklám': 'Reklám',
+                    'Dokumentum': 'Dokumentum', 'Vázlat': 'draft', 'Archív': 'archive' };
+      renderLibrary(active ? map[active.textContent.trim()] : null, e.target.value);
+    });
+  }
 
   // QUEUE
   $('#queue-list').innerHTML = QUEUE_ITEMS.map(q => `
@@ -3878,7 +3940,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   // search inputs do nothing harmful — just demo focus
   $$('.view-search').forEach(s => s.addEventListener('input', () => {
-    // simple client-side filter: hide cards whose text doesn't include query
+    // Library has its own dedicated search/filter pipeline; skip the generic one for it
+    if (s.closest('#view-library')) return;
     const q = s.value.toLowerCase().trim();
     const view = s.closest('.view');
     view.querySelectorAll('.card, .track, .char-card, .lyric-row').forEach(card => {
